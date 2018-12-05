@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btnParseSum = new System.Windows.Forms.Button();
             this.tbXValue = new System.Windows.Forms.TextBox();
@@ -57,11 +57,16 @@
             this.tbDeltaX = new System.Windows.Forms.TextBox();
             this.lblDeltaX = new System.Windows.Forms.Label();
             this.lblHumanReadableString = new System.Windows.Forms.Label();
+            this.gbMaclaurin = new System.Windows.Forms.GroupBox();
+            this.lblOrder = new System.Windows.Forms.Label();
+            this.tbOrder = new System.Windows.Forms.TextBox();
+            this.btnCreateMaclaurinSerie = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ChartFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNodeStructure)).BeginInit();
             this.gbSetAxis.SuspendLayout();
             this.gbDerivative.SuspendLayout();
             this.gbRienmannIntegral.SuspendLayout();
+            this.gbMaclaurin.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbSum
@@ -109,8 +114,8 @@
             // 
             // ChartFunction
             // 
-            chartArea2.Name = "ChartArea1";
-            this.ChartFunction.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.ChartFunction.ChartAreas.Add(chartArea1);
             this.ChartFunction.Location = new System.Drawing.Point(13, 84);
             this.ChartFunction.Name = "ChartFunction";
             this.ChartFunction.Size = new System.Drawing.Size(455, 310);
@@ -327,11 +332,50 @@
             this.lblHumanReadableString.TabIndex = 17;
             this.lblHumanReadableString.Text = "Human Readable Sum";
             // 
+            // gbMaclaurin
+            // 
+            this.gbMaclaurin.Controls.Add(this.btnCreateMaclaurinSerie);
+            this.gbMaclaurin.Controls.Add(this.tbOrder);
+            this.gbMaclaurin.Controls.Add(this.lblOrder);
+            this.gbMaclaurin.Location = new System.Drawing.Point(484, 489);
+            this.gbMaclaurin.Name = "gbMaclaurin";
+            this.gbMaclaurin.Size = new System.Drawing.Size(103, 93);
+            this.gbMaclaurin.TabIndex = 18;
+            this.gbMaclaurin.TabStop = false;
+            this.gbMaclaurin.Text = "Maclaurin series";
+            // 
+            // lblOrder
+            // 
+            this.lblOrder.AutoSize = true;
+            this.lblOrder.Location = new System.Drawing.Point(6, 20);
+            this.lblOrder.Name = "lblOrder";
+            this.lblOrder.Size = new System.Drawing.Size(33, 13);
+            this.lblOrder.TabIndex = 0;
+            this.lblOrder.Text = "Order";
+            // 
+            // tbOrder
+            // 
+            this.tbOrder.Location = new System.Drawing.Point(45, 17);
+            this.tbOrder.Name = "tbOrder";
+            this.tbOrder.Size = new System.Drawing.Size(50, 20);
+            this.tbOrder.TabIndex = 1;
+            // 
+            // btnCreateMaclaurinSerie
+            // 
+            this.btnCreateMaclaurinSerie.Location = new System.Drawing.Point(9, 43);
+            this.btnCreateMaclaurinSerie.Name = "btnCreateMaclaurinSerie";
+            this.btnCreateMaclaurinSerie.Size = new System.Drawing.Size(86, 40);
+            this.btnCreateMaclaurinSerie.TabIndex = 2;
+            this.btnCreateMaclaurinSerie.Text = "Create serie";
+            this.btnCreateMaclaurinSerie.UseVisualStyleBackColor = true;
+            this.btnCreateMaclaurinSerie.Click += new System.EventHandler(this.btnCreateMaclaurinSerie_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 590);
+            this.Controls.Add(this.gbMaclaurin);
             this.Controls.Add(this.pbNodeStructure);
             this.Controls.Add(this.lblHumanReadableString);
             this.Controls.Add(this.gbRienmannIntegral);
@@ -353,6 +397,8 @@
             this.gbDerivative.ResumeLayout(false);
             this.gbRienmannIntegral.ResumeLayout(false);
             this.gbRienmannIntegral.PerformLayout();
+            this.gbMaclaurin.ResumeLayout(false);
+            this.gbMaclaurin.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,6 +434,10 @@
         private System.Windows.Forms.Label lblDeltaX;
         private System.Windows.Forms.CheckBox cbRienmannAbsolute;
         private System.Windows.Forms.Label lblHumanReadableString;
+        private System.Windows.Forms.GroupBox gbMaclaurin;
+        private System.Windows.Forms.Button btnCreateMaclaurinSerie;
+        private System.Windows.Forms.TextBox tbOrder;
+        private System.Windows.Forms.Label lblOrder;
     }
 }
 

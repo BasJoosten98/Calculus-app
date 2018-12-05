@@ -279,6 +279,30 @@ namespace CalculusApp
         }
         private Node combineNodes(Node cleanNode1, Node cleanNode2)
         {
+            if (cleanNode1 is NodeNumber && cleanNode2 is NodeNumber)
+            {
+                if (((NodeNumber)cleanNode1).Number == ((NodeNumber)cleanNode2).Number)
+                {
+                    if (cleanNode1.ContainsX() == cleanNode2.ContainsX() && cleanNode1.ContainsP() == cleanNode2.ContainsP())
+                    {
+                        Node newNumberNode;
+                        newNumberNode = new NodeNumber(false, false, 1);
+                        return newNumberNode;
+                    }
+                    else if (cleanNode1.ContainsX() == cleanNode2.ContainsX() && !cleanNode2.ContainsP())
+                    {
+                        Node newNumberNode;
+                        newNumberNode = new NodeNumber(false, true, 1);
+                        return newNumberNode;
+                    }
+                    else if (cleanNode1.ContainsP() == cleanNode2.ContainsP() && !cleanNode2.ContainsX())
+                    {
+                        Node newNumberNode;
+                        newNumberNode = new NodeNumber(true, false, 1);
+                        return newNumberNode;
+                    }
+                }                
+            }
             if (cleanNode1 is NodeNumber)
             {
                 if (((NodeNumber)cleanNode1).Number == 0)
@@ -287,19 +311,26 @@ namespace CalculusApp
                     newNumberNode = new NodeNumber(false, false, 0);
                     return newNumberNode;
                 }
-            }
-            if (cleanNode1 is NodeNumber && cleanNode2 is NodeNumber)
-            {
-                if (cleanNode1.ContainsX() == cleanNode2.ContainsX() && cleanNode1.ContainsP() == cleanNode2.ContainsP())
-                {
-                    if (((NodeNumber)cleanNode1).Number == ((NodeNumber)cleanNode2).Number)
+                if (cleanNode2 is NodeFactorial) {
+                    if (((NodeNumber)cleanNode1).Number == ((NodeFactorial)cleanNode2).GetValueForX(0))
                     {
-                        Node newNumberNode;
-                        newNumberNode = new NodeNumber(false, false, 1);
-                        return newNumberNode;
+                        return new NodeNumber(cleanNode1.ContainsX(), cleanNode1.ContainsP(), 1);
                     }
                 }
             }
+            if(cleanNode2 is NodeNumber)
+            {
+                if (cleanNode1 is NodeFactorial)
+                {
+                    if (((NodeNumber)cleanNode2).Number == ((NodeFactorial)cleanNode1).GetValueForX(0))
+                    {
+                        Node nodeDiv = new NodeDivision();
+                        nodeDiv.AddNode1(new NodeNumber(false, false, 1));
+                        nodeDiv.AddNode2(new NodeNumber(cleanNode2.ContainsX(), cleanNode2.ContainsP(), 1));
+                        return nodeDiv;
+                    }
+                }
+            }          
             return null;
         }
     }

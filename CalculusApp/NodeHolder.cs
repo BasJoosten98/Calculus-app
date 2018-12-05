@@ -451,6 +451,48 @@ namespace CalculusApp
             Node StartNode = startNode.GetDerivative();
             NodeHolder nh = new NodeHolder(StartNode);
             return nh;
+        } 
+        public NodeHolder GetMaclaurinSerie(int order)
+        {
+            if(order <= 0)
+            {
+                throw new Exception("Order must be larger than 0");
+            }
+            Node MaclaurinNode = getMaclaurinSerieRecursive(1, order, startNode.Clone());
+            NodeHolder MaclaurinNodeHolder = new NodeHolder(MaclaurinNode);
+            return MaclaurinNodeHolder;
+        }
+        private Node getMaclaurinSerieRecursive(int counter, int order, Node curNode)
+        {
+            Node nodeTim = new NodeTimes();
+            Node nodeDiv = new NodeDivision();
+            Node nodeFac = new NodeFactorial();
+            Node nodePow = new NodePower();
+            double zeroValue = curNode.GetValueForX(0);
+
+            nodeTim.AddNode1(nodeDiv);
+            nodeTim.AddNode2(nodePow);
+            nodeDiv.AddNode1(new NodeNumber(false, false, zeroValue));
+            nodeDiv.AddNode2(nodeFac);
+            nodeFac.AddNode1(new NodeNumber(false, false, counter - 1));
+            nodePow.AddNode1(new NodeNumber(true, false, 1));
+            nodePow.AddNode2(new NodeNumber(false, false, counter - 1));
+
+            if (counter == order)
+            {
+                return nodeTim;
+            }
+            else if(counter < order && counter > 0)
+            {
+                Node nodePlus = new NodePlus();
+                nodePlus.AddNode1(nodeTim);
+                nodePlus.AddNode2(getMaclaurinSerieRecursive(counter + 1, order, curNode.GetDerivative()));
+                return nodePlus;
+            }
+            else
+            {
+                throw new Exception("Error while making Maclaurin serie: counter problem: " + counter);
+            }
         }
     }
 }

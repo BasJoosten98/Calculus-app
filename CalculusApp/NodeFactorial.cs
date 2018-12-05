@@ -10,12 +10,14 @@ namespace CalculusApp
     {
         private Node node1;
 
+        public override Node Node1 { get { return node1; } }
         public NodeFactorial()
         {
 
         }
         public override void AddNode1(Node n)
         {
+            if (n.ContainsX()) { throw new Exception("Factorial does not allow x values"); }
             if (node1 != null) { node1.AddParentNode(null); }
             node1 = n;
             if (n != null)
@@ -29,19 +31,33 @@ namespace CalculusApp
         }
         public override double GetValueForX(double X)
         {
+            //x value can be ignored
+            string node1result = node1.GetValueForX(0).ToString();
             int number;
-            if(int.TryParse(X.ToString(), out number))
+            if(!int.TryParse(node1result, out number))
             {
-                if (number == 1 || number == 0)
-                {
-                    return 1;
-                }
-                else if (number > 1)
-                {
-                    return number * GetValueForX(number - 1);
-                }
+                throw new Exception("Math error: Factorial of negative integers or decimals are not allowed");
             }
-            throw new Exception("Math error: Factorial of negative integers or decimals are not allowed");
+            if(number < 0)
+            {
+                throw new Exception("Math error: Factorial of negative integers or decimals are not allowed");
+            }
+            return getFactorial(number);
+        }
+        private int getFactorial(int number)
+        {
+            if (number == 1 || number == 0)
+            {
+                return 1;
+            }
+            else if (number > 1)
+            {
+                return number * getFactorial(number - 1);
+            }
+            else
+            {
+                throw new Exception("Math error: Factorial of negative integers or decimals are not allowed");
+            }
         }
         public override string GetHumanReadableString()
         {
@@ -85,6 +101,24 @@ namespace CalculusApp
             Node cleanNode1 = node1.MakeNodeClean(null, out receivedReplacementNode);
             this.AddNode1(cleanNode1);
             replacementNode = null;
+            if(node1 is NodeNumber)
+            {
+                string node1result = node1.GetValueForX(0).ToString();
+                int number;
+                if (!int.TryParse(node1result, out number))
+                {
+                    throw new Exception("Factorial of negative integers or decimals are not allowed");
+                }
+                if (number < 0)
+                {
+                    throw new Exception("Factorial of negative integers or decimals are not allowed");
+                }
+                number = getFactorial(number);
+                if(number <= 9999)
+                {
+                    return new NodeNumber(false, false, number);
+                }
+            }
             return this;
         }
     }

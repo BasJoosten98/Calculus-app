@@ -146,5 +146,31 @@ namespace CalculusApp
                 MessageBox.Show("Rienmann calculation failed: " + ex.Message);
             }
         }
+
+        private void btnCreateMaclaurinSerie_Click(object sender, EventArgs e)
+        {
+            int order;
+            if(!int.TryParse(tbOrder.Text, out order))
+            {
+                MessageBox.Show("Order needs to be an integer");
+                return;
+            }
+            try
+            {
+                if (lastSelectedFunction != null)
+                {
+                    NodeHolder nh = lastSelectedFunction.GetMaclaurinSerie(order);
+                    selectSum(nh);
+                    myFunctions.Add(nh);
+                    lbFunctions.Items.Add(nh);
+                    lbFunctions.SelectedIndex = lbFunctions.Items.IndexOf(nh);
+                }
+                else { throw new Exception("No function has been selected"); }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error while making Maclaurin serie: " + ex.Message);
+            }
+        }
     }
 }

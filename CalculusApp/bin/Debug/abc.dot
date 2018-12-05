@@ -1,12 +1,540 @@
 graph calculus {
 node [ fontname = "Arial" ]
-node4 [ label = "/( , )" ]
-node4 -- node22
-node4 -- node8
-node22 [ label = "-1" ]
-node8 [ label = "^( , )" ]
-node8 -- node14
-node8 -- node9
-node14 [ label = "x" ]
-node9 [ label = "2" ]
+node346 [ label = "/( , )" ]
+node346 -- node865
+node346 -- node350
+node865 [ label = "+( , )" ]
+node865 -- node347
+node865 -- node866
+node347 [ label = "*( , )" ]
+node347 -- node352
+node347 -- node855
+node352 [ label = "+( , )" ]
+node352 -- node353
+node352 -- node564
+node353 [ label = "+( , )" ]
+node353 -- node354
+node353 -- node355
+node354 [ label = "*( , )" ]
+node354 -- node391
+node354 -- node544
+node391 [ label = "+( , )" ]
+node391 -- node393
+node391 -- node416
+node393 [ label = "*( , )" ]
+node393 -- node412
+node393 -- node926
+node412 [ label = "^( , )" ]
+node412 -- node400
+node412 -- node925
+node400 [ label = "+( , )" ]
+node400 -- node401
+node400 -- node402
+node401 [ label = "1" ]
+node402 [ label = "-x" ]
+node925 [ label = "2" ]
+node926 [ label = "-24" ]
+node416 [ label = "*( , )" ]
+node416 -- node443
+node416 -- node542
+node443 [ label = "+( , )" ]
+node443 -- node446
+node443 -- node479
+node446 [ label = "*( , )" ]
+node446 -- node476
+node446 -- node929
+node476 [ label = "^( , )" ]
+node476 -- node464
+node476 -- node927
+node464 [ label = "+( , )" ]
+node464 -- node465
+node464 -- node466
+node465 [ label = "1" ]
+node466 [ label = "-x" ]
+node927 [ label = "2" ]
+node929 [ label = "-24" ]
+node479 [ label = "+( , )" ]
+node479 -- node480
+node479 -- node481
+node480 [ label = "*( , )" ]
+node480 -- node490
+node480 -- node512
+node490 [ label = "*( , )" ]
+node490 -- node509
+node490 -- node931
+node509 [ label = "^( , )" ]
+node509 -- node497
+node509 -- node930
+node497 [ label = "+( , )" ]
+node497 -- node498
+node497 -- node499
+node498 [ label = "1" ]
+node499 [ label = "-x" ]
+node930 [ label = "1" ]
+node931 [ label = "-24" ]
+node512 [ label = "*( , )" ]
+node512 -- node513
+node512 -- node514
+node513 [ label = "2" ]
+node514 [ label = "^( , )" ]
+node514 -- node515
+node514 -- node518
+node515 [ label = "+( , )" ]
+node515 -- node516
+node515 -- node517
+node516 [ label = "1" ]
+node517 [ label = "-x" ]
+node518 [ label = "1" ]
+node481 [ label = "*( , )" ]
+node481 -- node935
+node481 -- node482
+node935 [ label = "-2" ]
+node482 [ label = "*( , )" ]
+node482 -- node483
+node482 -- node488
+node483 [ label = "^( , )" ]
+node483 -- node484
+node483 -- node487
+node484 [ label = "+( , )" ]
+node484 -- node485
+node484 -- node486
+node485 [ label = "1" ]
+node486 [ label = "-x" ]
+node487 [ label = "2" ]
+node488 [ label = "12" ]
+node542 [ label = "-1" ]
+node544 [ label = "^( , )" ]
+node544 -- node545
+node544 -- node548
+node545 [ label = "+( , )" ]
+node545 -- node546
+node545 -- node547
+node546 [ label = "1" ]
+node547 [ label = "-x" ]
+node548 [ label = "8" ]
+node355 [ label = "*( , )" ]
+node355 -- node557
+node355 -- node356
+node557 [ label = "*( , )" ]
+node557 -- node561
+node557 -- node895
+node561 [ label = "^( , )" ]
+node561 -- node549
+node561 -- node936
+node549 [ label = "+( , )" ]
+node549 -- node550
+node549 -- node551
+node550 [ label = "1" ]
+node551 [ label = "-x" ]
+node936 [ label = "7" ]
+node895 [ label = "-8" ]
+node356 [ label = "+( , )" ]
+node356 -- node357
+node356 -- node364
+node357 [ label = "*( , )" ]
+node357 -- node358
+node357 -- node363
+node358 [ label = "^( , )" ]
+node358 -- node359
+node358 -- node362
+node359 [ label = "+( , )" ]
+node359 -- node360
+node359 -- node361
+node360 [ label = "1" ]
+node361 [ label = "-x" ]
+node362 [ label = "3" ]
+node363 [ label = "8" ]
+node364 [ label = "*( , )" ]
+node364 -- node365
+node364 -- node390
+node365 [ label = "+( , )" ]
+node365 -- node366
+node365 -- node375
+node366 [ label = "*( , )" ]
+node366 -- node896
+node366 -- node369
+node896 [ label = "8" ]
+node369 [ label = "^( , )" ]
+node369 -- node370
+node369 -- node373
+node370 [ label = "+( , )" ]
+node370 -- node371
+node370 -- node372
+node371 [ label = "1" ]
+node372 [ label = "-x" ]
+node373 [ label = "3" ]
+node375 [ label = "*( , )" ]
+node375 -- node376
+node375 -- node383
+node376 [ label = "*( , )" ]
+node376 -- node377
+node376 -- node382
+node377 [ label = "^( , )" ]
+node377 -- node378
+node377 -- node381
+node378 [ label = "+( , )" ]
+node378 -- node379
+node378 -- node380
+node379 [ label = "1" ]
+node380 [ label = "-x" ]
+node381 [ label = "2" ]
+node382 [ label = "12" ]
+node383 [ label = "*( , )" ]
+node383 -- node384
+node383 -- node385
+node384 [ label = "2" ]
+node385 [ label = "^( , )" ]
+node385 -- node386
+node385 -- node389
+node386 [ label = "+( , )" ]
+node386 -- node387
+node386 -- node388
+node387 [ label = "1" ]
+node388 [ label = "-x" ]
+node389 [ label = "1" ]
+node390 [ label = "-1" ]
+node564 [ label = "*( , )" ]
+node564 -- node600
+node564 -- node565
+node600 [ label = "+( , )" ]
+node600 -- node601
+node600 -- node602
+node601 [ label = "*( , )" ]
+node601 -- node628
+node601 -- node735
+node628 [ label = "+( , )" ]
+node628 -- node631
+node628 -- node654
+node631 [ label = "*( , )" ]
+node631 -- node651
+node631 -- node938
+node651 [ label = "^( , )" ]
+node651 -- node639
+node651 -- node937
+node639 [ label = "+( , )" ]
+node639 -- node640
+node639 -- node641
+node640 [ label = "1" ]
+node641 [ label = "-x" ]
+node937 [ label = "3" ]
+node938 [ label = "8" ]
+node654 [ label = "*( , )" ]
+node654 -- node672
+node654 -- node655
+node672 [ label = "+( , )" ]
+node672 -- node673
+node672 -- node674
+node673 [ label = "*( , )" ]
+node673 -- node942
+node673 -- node705
+node942 [ label = "-2" ]
+node705 [ label = "*( , )" ]
+node705 -- node706
+node705 -- node711
+node706 [ label = "^( , )" ]
+node706 -- node707
+node706 -- node710
+node707 [ label = "+( , )" ]
+node707 -- node708
+node707 -- node709
+node708 [ label = "1" ]
+node709 [ label = "-x" ]
+node710 [ label = "3" ]
+node711 [ label = "-4" ]
+node674 [ label = "*( , )" ]
+node674 -- node713
+node674 -- node675
+node713 [ label = "*( , )" ]
+node713 -- node732
+node713 -- node944
+node732 [ label = "^( , )" ]
+node732 -- node720
+node732 -- node943
+node720 [ label = "+( , )" ]
+node720 -- node721
+node720 -- node722
+node721 [ label = "1" ]
+node722 [ label = "-x" ]
+node943 [ label = "2" ]
+node944 [ label = "12" ]
+node675 [ label = "*( , )" ]
+node675 -- node676
+node675 -- node677
+node676 [ label = "2" ]
+node677 [ label = "^( , )" ]
+node677 -- node678
+node677 -- node681
+node678 [ label = "+( , )" ]
+node678 -- node679
+node678 -- node680
+node679 [ label = "1" ]
+node680 [ label = "-x" ]
+node681 [ label = "1" ]
+node655 [ label = "-1" ]
+node735 [ label = "*( , )" ]
+node735 -- node736
+node735 -- node741
+node736 [ label = "^( , )" ]
+node736 -- node737
+node736 -- node740
+node737 [ label = "+( , )" ]
+node737 -- node738
+node737 -- node739
+node738 [ label = "1" ]
+node739 [ label = "-x" ]
+node740 [ label = "7" ]
+node741 [ label = "-8" ]
+node602 [ label = "*( , )" ]
+node602 -- node743
+node602 -- node603
+node743 [ label = "*( , )" ]
+node743 -- node762
+node743 -- node946
+node762 [ label = "^( , )" ]
+node762 -- node750
+node762 -- node945
+node750 [ label = "+( , )" ]
+node750 -- node751
+node750 -- node752
+node751 [ label = "1" ]
+node752 [ label = "-x" ]
+node945 [ label = "6" ]
+node946 [ label = "56" ]
+node603 [ label = "+( , )" ]
+node603 -- node604
+node603 -- node611
+node604 [ label = "*( , )" ]
+node604 -- node605
+node604 -- node606
+node605 [ label = "-2" ]
+node606 [ label = "^( , )" ]
+node606 -- node607
+node606 -- node610
+node607 [ label = "+( , )" ]
+node607 -- node608
+node607 -- node609
+node608 [ label = "1" ]
+node609 [ label = "-x" ]
+node610 [ label = "4" ]
+node611 [ label = "*( , )" ]
+node611 -- node612
+node611 -- node613
+node612 [ label = "-1" ]
+node613 [ label = "*( , )" ]
+node613 -- node614
+node613 -- node621
+node614 [ label = "*( , )" ]
+node614 -- node615
+node614 -- node616
+node615 [ label = "2" ]
+node616 [ label = "^( , )" ]
+node616 -- node617
+node616 -- node620
+node617 [ label = "+( , )" ]
+node617 -- node618
+node617 -- node619
+node618 [ label = "1" ]
+node619 [ label = "-x" ]
+node620 [ label = "1" ]
+node621 [ label = "*( , )" ]
+node621 -- node622
+node621 -- node627
+node622 [ label = "^( , )" ]
+node622 -- node623
+node622 -- node626
+node623 [ label = "+( , )" ]
+node623 -- node624
+node623 -- node625
+node624 [ label = "1" ]
+node625 [ label = "-x" ]
+node626 [ label = "3" ]
+node627 [ label = "-4" ]
+node565 [ label = "-1" ]
+node855 [ label = "^( , )" ]
+node855 -- node856
+node855 -- node859
+node856 [ label = "+( , )" ]
+node856 -- node857
+node856 -- node858
+node857 [ label = "1" ]
+node858 [ label = "-x" ]
+node859 [ label = "16" ]
+node866 [ label = "*( , )" ]
+node866 -- node867
+node866 -- node348
+node867 [ label = "-1" ]
+node348 [ label = "*( , )" ]
+node348 -- node778
+node348 -- node773
+node778 [ label = "+( , )" ]
+node778 -- node779
+node778 -- node820
+node779 [ label = "*( , )" ]
+node779 -- node780
+node779 -- node815
+node780 [ label = "+( , )" ]
+node780 -- node781
+node780 -- node788
+node781 [ label = "*( , )" ]
+node781 -- node782
+node781 -- node787
+node782 [ label = "^( , )" ]
+node782 -- node783
+node782 -- node786
+node783 [ label = "+( , )" ]
+node783 -- node784
+node783 -- node785
+node784 [ label = "1" ]
+node785 [ label = "-x" ]
+node786 [ label = "3" ]
+node787 [ label = "8" ]
+node788 [ label = "*( , )" ]
+node788 -- node789
+node788 -- node814
+node789 [ label = "+( , )" ]
+node789 -- node790
+node789 -- node799
+node790 [ label = "*( , )" ]
+node790 -- node919
+node790 -- node793
+node919 [ label = "8" ]
+node793 [ label = "^( , )" ]
+node793 -- node794
+node793 -- node797
+node794 [ label = "+( , )" ]
+node794 -- node795
+node794 -- node796
+node795 [ label = "1" ]
+node796 [ label = "-x" ]
+node797 [ label = "3" ]
+node799 [ label = "*( , )" ]
+node799 -- node800
+node799 -- node807
+node800 [ label = "*( , )" ]
+node800 -- node801
+node800 -- node806
+node801 [ label = "^( , )" ]
+node801 -- node802
+node801 -- node805
+node802 [ label = "+( , )" ]
+node802 -- node803
+node802 -- node804
+node803 [ label = "1" ]
+node804 [ label = "-x" ]
+node805 [ label = "2" ]
+node806 [ label = "12" ]
+node807 [ label = "*( , )" ]
+node807 -- node808
+node807 -- node809
+node808 [ label = "2" ]
+node809 [ label = "^( , )" ]
+node809 -- node810
+node809 -- node813
+node810 [ label = "+( , )" ]
+node810 -- node811
+node810 -- node812
+node811 [ label = "1" ]
+node812 [ label = "-x" ]
+node813 [ label = "1" ]
+node814 [ label = "-1" ]
+node815 [ label = "^( , )" ]
+node815 -- node816
+node815 -- node819
+node816 [ label = "+( , )" ]
+node816 -- node817
+node816 -- node818
+node817 [ label = "1" ]
+node818 [ label = "-x" ]
+node819 [ label = "8" ]
+node820 [ label = "*( , )" ]
+node820 -- node821
+node820 -- node822
+node821 [ label = "-1" ]
+node822 [ label = "*( , )" ]
+node822 -- node823
+node822 -- node848
+node823 [ label = "+( , )" ]
+node823 -- node824
+node823 -- node831
+node824 [ label = "*( , )" ]
+node824 -- node825
+node824 -- node826
+node825 [ label = "-2" ]
+node826 [ label = "^( , )" ]
+node826 -- node827
+node826 -- node830
+node827 [ label = "+( , )" ]
+node827 -- node828
+node827 -- node829
+node828 [ label = "1" ]
+node829 [ label = "-x" ]
+node830 [ label = "4" ]
+node831 [ label = "*( , )" ]
+node831 -- node832
+node831 -- node833
+node832 [ label = "-1" ]
+node833 [ label = "*( , )" ]
+node833 -- node834
+node833 -- node841
+node834 [ label = "*( , )" ]
+node834 -- node835
+node834 -- node836
+node835 [ label = "2" ]
+node836 [ label = "^( , )" ]
+node836 -- node837
+node836 -- node840
+node837 [ label = "+( , )" ]
+node837 -- node838
+node837 -- node839
+node838 [ label = "1" ]
+node839 [ label = "-x" ]
+node840 [ label = "1" ]
+node841 [ label = "*( , )" ]
+node841 -- node842
+node841 -- node847
+node842 [ label = "^( , )" ]
+node842 -- node843
+node842 -- node846
+node843 [ label = "+( , )" ]
+node843 -- node844
+node843 -- node845
+node844 [ label = "1" ]
+node845 [ label = "-x" ]
+node846 [ label = "3" ]
+node847 [ label = "-4" ]
+node848 [ label = "*( , )" ]
+node848 -- node849
+node848 -- node854
+node849 [ label = "^( , )" ]
+node849 -- node850
+node849 -- node853
+node850 [ label = "+( , )" ]
+node850 -- node851
+node850 -- node852
+node851 [ label = "1" ]
+node852 [ label = "-x" ]
+node853 [ label = "7" ]
+node854 [ label = "-8" ]
+node773 [ label = "*( , )" ]
+node773 -- node777
+node773 -- node923
+node777 [ label = "^( , )" ]
+node777 -- node765
+node777 -- node947
+node765 [ label = "+( , )" ]
+node765 -- node766
+node765 -- node767
+node766 [ label = "1" ]
+node767 [ label = "-x" ]
+node947 [ label = "15" ]
+node923 [ label = "-16" ]
+node350 [ label = "^( , )" ]
+node350 -- node861
+node350 -- node924
+node861 [ label = "+( , )" ]
+node861 -- node862
+node861 -- node863
+node862 [ label = "1" ]
+node863 [ label = "-x" ]
+node924 [ label = "32" ]
 }

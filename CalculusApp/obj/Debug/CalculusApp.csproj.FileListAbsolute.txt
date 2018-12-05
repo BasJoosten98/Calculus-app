@@ -27,3 +27,13 @@ C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\CalculusApp\Calcu
 C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\CalculusApp\CalculusApp\obj\Debug\CalculusApp.csproj.CoreCompileInputs.cache
 C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\CalculusApp\CalculusApp\obj\Debug\CalculusApp.exe
 C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\CalculusApp\CalculusApp\obj\Debug\CalculusApp.pdb
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\bin\Debug\CalculusApp.exe.config
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\bin\Debug\CalculusApp.exe
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\bin\Debug\CalculusApp.pdb
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.csprojAssemblyReference.cache
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.Form1.resources
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.Properties.Resources.resources
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.csproj.GenerateResource.cache
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.csproj.CoreCompileInputs.cache
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.exe
+C:\Users\basjo\Desktop\School (Fontys)\ICT Year 2, Block 2\CPP\calculus-app\CalculusApp\obj\Debug\CalculusApp.pdb
