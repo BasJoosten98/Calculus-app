@@ -1,40 +1,6 @@
 graph calculus {
 node [ fontname = "Arial" ]
-node587 [ label = "+( , )" ]
-node587 -- node13530
-node587 -- node613
-node13530 [ label = "1" ]
-node613 [ label = "+( , )" ]
-node613 -- node13533
-node613 -- node685
-node13533 [ label = "x" ]
-node685 [ label = "+( , )" ]
-node685 -- node680
-node685 -- node979
-node680 [ label = "^( , )" ]
-node680 -- node683
-node680 -- node684
-node683 [ label = "x" ]
-node684 [ label = "2" ]
-node979 [ label = "+( , )" ]
-node979 -- node974
-node979 -- node2589
-node974 [ label = "^( , )" ]
-node974 -- node977
-node974 -- node978
-node977 [ label = "x" ]
-node978 [ label = "3" ]
-node2589 [ label = "+( , )" ]
-node2589 -- node2584
-node2589 -- node13522
-node2584 [ label = "^( , )" ]
-node2584 -- node2587
-node2584 -- node2588
-node2587 [ label = "x" ]
-node2588 [ label = "4" ]
-node13522 [ label = "^( , )" ]
-node13522 -- node13525
-node13522 -- node13526
-node13525 [ label = "x" ]
-node13526 [ label = "5" ]
+node1 [ label = "c( )" ]
+node1 -- node2
+node2 [ label = "x" ]
 }

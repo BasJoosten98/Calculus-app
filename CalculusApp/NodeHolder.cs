@@ -456,7 +456,7 @@ namespace CalculusApp
         public void DrawMaclaurinSerieFast(GraphDrawer drawer, int order)
         {
             if(order < 1) { throw new Exception("order must be larger than 0"); }
-            double[] MaclaurinValues = makeMaclaurinList(0, order, null, 0.01);
+            double[] MaclaurinValues = makeMaclaurinList(0, order, null, 0.02);
             drawMaclaurinSerieFastRecursive(1, order, MaclaurinValues, drawer, null);
         }
         private Node drawMaclaurinSerieFastRecursive(int counter, int order, double[] maclaurinValues, GraphDrawer drawer, Node prevCompletedNode)
@@ -528,27 +528,31 @@ namespace CalculusApp
             if (prevResults == null)
             {
                 double tempSum;
+                double tempSumSave = 0; //saves the first one with division by h (is the one used for drawing!)
                 newPrevResults = new double[order];
                 for(int i = 0; i < order; i++)
                 {
                     tempSum = startNode.GetValueForX(0 + i * h);
                     newPrevResults[i] = tempSum;
+                    if (i == 0) { tempSumSave = tempSum / Math.Pow(h, counter); }
                 }
                 futureResults = makeMaclaurinList(counter + 1, order, newPrevResults, h);
-                futureResults[counter] = newPrevResults[0];
+                futureResults[counter] = tempSumSave; //saving the one used for drawing
                 return futureResults;
             }
             else if(order - counter >= 1)
             {
                 double tempSum;
+                double tempSumSave = 0; //saves the first one with division by h (is the one used for drawing!)
                 newPrevResults = new double[order - counter];
                 for(int i = 0; i < (order - counter); i++)
                 {
-                    tempSum = (prevResults[i+1] - prevResults[i]) / h;
+                    tempSum = (prevResults[i+1] - prevResults[i]);
                     newPrevResults[i] = tempSum;
+                    if(i == 0) { tempSumSave = tempSum / Math.Pow(h, counter); }
                 }
                 futureResults = makeMaclaurinList(counter + 1, order, newPrevResults, h);
-                futureResults[counter] = newPrevResults[0];
+                futureResults[counter] = tempSumSave; //saving the one used for drawing
                 return futureResults;
             }
             else if(order == counter && order > 0)
