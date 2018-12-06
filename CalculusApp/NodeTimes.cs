@@ -262,7 +262,7 @@ namespace CalculusApp
                     newNumberNode = new NodeNumber(false, false, 0);
                     return newNumberNode;
                 }
-                else if (((NodeNumber)cleanNode1).Number == 1)
+                else if (((NodeNumber)cleanNode1).Number == 1 && !cleanNode1.ContainsX() && !cleanNode1.ContainsP())
                 {
                     return cleanNode2;
                 }
@@ -285,7 +285,7 @@ namespace CalculusApp
                     newNumberNode = new NodeNumber(false, false, 0);
                     return newNumberNode;
                 }
-                else if (((NodeNumber)cleanNode2).Number == 1)
+                else if (((NodeNumber)cleanNode2).Number == 1 && !cleanNode2.ContainsX() && !cleanNode2.ContainsP())
                 {
                     return cleanNode1;
                 }

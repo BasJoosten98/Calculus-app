@@ -17,6 +17,7 @@ namespace CalculusApp
         char[] action1Parameter;
         char[] action2Parameter;
         List<Node> allNodes;
+
         
         //properties
         public string EnteredSum { get { return enteredSum.ToString(); } }
@@ -451,18 +452,127 @@ namespace CalculusApp
             Node StartNode = startNode.GetDerivative();
             NodeHolder nh = new NodeHolder(StartNode);
             return nh;
+        }
+        public void DrawMaclaurinSerieFast(GraphDrawer drawer, int order)
+        {
+            if(order < 1) { throw new Exception("order must be larger than 0"); }
+            double[] MaclaurinValues = makeMaclaurinList(0, order, null, 0.01);
+            drawMaclaurinSerieFastRecursive(1, order, MaclaurinValues, drawer, null);
+        }
+        private Node drawMaclaurinSerieFastRecursive(int counter, int order, double[] maclaurinValues, GraphDrawer drawer, Node prevCompletedNode)
+        {
+            NodeHolder nh;
+            Node nodeTim = new NodeTimes();
+            Node nodeDiv = new NodeDivision();
+            Node nodeFac = new NodeFactorial();
+            Node nodePow = new NodePower();
+            double zeroValue = maclaurinValues[counter - 1];
+
+            nodeTim.AddNode1(nodeDiv);
+            nodeTim.AddNode2(nodePow);
+            nodeDiv.AddNode1(new NodeNumber(false, false, zeroValue));
+            nodeDiv.AddNode2(nodeFac);
+            nodeFac.AddNode1(new NodeNumber(false, false, counter - 1));
+            nodePow.AddNode1(new NodeNumber(true, false, 1)); //X
+            nodePow.AddNode2(new NodeNumber(false, false, counter - 1));
+
+            if (counter == order)
+            {
+                Node nodePlus = new NodePlus();
+                if (prevCompletedNode != null)
+                {
+                    nodePlus.AddNode1(nodeTim);
+                    nodePlus.AddNode2(prevCompletedNode);
+                    prevCompletedNode = nodePlus.Clone();
+                    nh = new NodeHolder(prevCompletedNode);
+                }
+                else
+                {
+                    prevCompletedNode = nodeTim;
+                    nh = new NodeHolder(prevCompletedNode);
+                }
+                if (counter == 1) { drawer.drawFunction(nh, true); }
+                else { drawer.drawFunction(nh, false); }
+                return nodeTim;
+            }
+            else if (counter < order && counter > 0)
+            {
+                Node nodePlus = new NodePlus();
+                if (prevCompletedNode != null)
+                {
+                    nodePlus.AddNode1(nodeTim);
+                    nodePlus.AddNode2(prevCompletedNode);
+                    prevCompletedNode = nodePlus.Clone();
+                    nh = new NodeHolder(prevCompletedNode);
+                }
+                else
+                {
+                    prevCompletedNode = nodeTim;
+                    nh = new NodeHolder(prevCompletedNode);
+                }
+                if(counter == 1) { drawer.drawFunction(nh, true); }
+                else { drawer.drawFunction(nh, false); }
+                nodePlus.AddNode1(nodeTim);
+                nodePlus.AddNode2(drawMaclaurinSerieFastRecursive(counter + 1, order, maclaurinValues, drawer, prevCompletedNode));                
+                return nodePlus;
+            }
+            else
+            {
+                throw new Exception("Error while making Maclaurin serie: counter problem: " + counter);
+            }
+        }
+        private double[] makeMaclaurinList(int counter, int order, double[] prevResults, double h)
+        {
+            double[] newPrevResults;
+            double[] futureResults;
+            if (prevResults == null)
+            {
+                double tempSum;
+                newPrevResults = new double[order];
+                for(int i = 0; i < order; i++)
+                {
+                    tempSum = startNode.GetValueForX(0 + i * h);
+                    newPrevResults[i] = tempSum;
+                }
+                futureResults = makeMaclaurinList(counter + 1, order, newPrevResults, h);
+                futureResults[counter] = newPrevResults[0];
+                return futureResults;
+            }
+            else if(order - counter >= 1)
+            {
+                double tempSum;
+                newPrevResults = new double[order - counter];
+                for(int i = 0; i < (order - counter); i++)
+                {
+                    tempSum = (prevResults[i+1] - prevResults[i]) / h;
+                    newPrevResults[i] = tempSum;
+                }
+                futureResults = makeMaclaurinList(counter + 1, order, newPrevResults, h);
+                futureResults[counter] = newPrevResults[0];
+                return futureResults;
+            }
+            else if(order == counter && order > 0)
+            {
+                return new double[order];
+            }
+            else
+            {
+                throw new Exception("counter/order problem: counter: " + counter + ", order: " + order);
+            }
+
         } 
-        public NodeHolder GetMaclaurinSerie(int order)
+
+        public NodeHolder GetMaclaurinSerieAccurate(int order)
         {
             if(order <= 0)
             {
                 throw new Exception("Order must be larger than 0");
             }
-            Node MaclaurinNode = getMaclaurinSerieRecursive(1, order, startNode.Clone());
+            Node MaclaurinNode = getMaclaurinSerieRecursiveAccurate(1, order, startNode);
             NodeHolder MaclaurinNodeHolder = new NodeHolder(MaclaurinNode);
             return MaclaurinNodeHolder;
         }
-        private Node getMaclaurinSerieRecursive(int counter, int order, Node curNode)
+        private Node getMaclaurinSerieRecursiveAccurate(int counter, int order, Node curNode)
         {
             Node nodeTim = new NodeTimes();
             Node nodeDiv = new NodeDivision();
@@ -486,7 +596,8 @@ namespace CalculusApp
             {
                 Node nodePlus = new NodePlus();
                 nodePlus.AddNode1(nodeTim);
-                nodePlus.AddNode2(getMaclaurinSerieRecursive(counter + 1, order, curNode.GetDerivative()));
+                curNode = curNode.GetDerivative();
+                nodePlus.AddNode2(getMaclaurinSerieRecursiveAccurate(counter + 1, order, curNode));
                 return nodePlus;
             }
             else

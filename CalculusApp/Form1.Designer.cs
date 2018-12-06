@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btnParseSum = new System.Windows.Forms.Button();
             this.tbXValue = new System.Windows.Forms.TextBox();
@@ -58,9 +58,10 @@
             this.lblDeltaX = new System.Windows.Forms.Label();
             this.lblHumanReadableString = new System.Windows.Forms.Label();
             this.gbMaclaurin = new System.Windows.Forms.GroupBox();
-            this.lblOrder = new System.Windows.Forms.Label();
+            this.btnDrawMaclaurinSeriesFast = new System.Windows.Forms.Button();
+            this.btnCreateMaclaurinSerieAccurate = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TextBox();
-            this.btnCreateMaclaurinSerie = new System.Windows.Forms.Button();
+            this.lblOrder = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ChartFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNodeStructure)).BeginInit();
             this.gbSetAxis.SuspendLayout();
@@ -114,8 +115,8 @@
             // 
             // ChartFunction
             // 
-            chartArea1.Name = "ChartArea1";
-            this.ChartFunction.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.ChartFunction.ChartAreas.Add(chartArea2);
             this.ChartFunction.Location = new System.Drawing.Point(13, 84);
             this.ChartFunction.Name = "ChartFunction";
             this.ChartFunction.Size = new System.Drawing.Size(455, 310);
@@ -334,15 +335,43 @@
             // 
             // gbMaclaurin
             // 
-            this.gbMaclaurin.Controls.Add(this.btnCreateMaclaurinSerie);
+            this.gbMaclaurin.Controls.Add(this.btnDrawMaclaurinSeriesFast);
+            this.gbMaclaurin.Controls.Add(this.btnCreateMaclaurinSerieAccurate);
             this.gbMaclaurin.Controls.Add(this.tbOrder);
             this.gbMaclaurin.Controls.Add(this.lblOrder);
             this.gbMaclaurin.Location = new System.Drawing.Point(484, 489);
             this.gbMaclaurin.Name = "gbMaclaurin";
-            this.gbMaclaurin.Size = new System.Drawing.Size(103, 93);
+            this.gbMaclaurin.Size = new System.Drawing.Size(132, 93);
             this.gbMaclaurin.TabIndex = 18;
             this.gbMaclaurin.TabStop = false;
             this.gbMaclaurin.Text = "Maclaurin series";
+            // 
+            // btnDrawMaclaurinSeriesFast
+            // 
+            this.btnDrawMaclaurinSeriesFast.Location = new System.Drawing.Point(9, 70);
+            this.btnDrawMaclaurinSeriesFast.Name = "btnDrawMaclaurinSeriesFast";
+            this.btnDrawMaclaurinSeriesFast.Size = new System.Drawing.Size(117, 23);
+            this.btnDrawMaclaurinSeriesFast.TabIndex = 3;
+            this.btnDrawMaclaurinSeriesFast.Text = "Draw series Fast";
+            this.btnDrawMaclaurinSeriesFast.UseVisualStyleBackColor = true;
+            this.btnDrawMaclaurinSeriesFast.Click += new System.EventHandler(this.btnDrawMaclaurinSeriesFast_Click);
+            // 
+            // btnCreateMaclaurinSerieAccurate
+            // 
+            this.btnCreateMaclaurinSerieAccurate.Location = new System.Drawing.Point(9, 42);
+            this.btnCreateMaclaurinSerieAccurate.Name = "btnCreateMaclaurinSerieAccurate";
+            this.btnCreateMaclaurinSerieAccurate.Size = new System.Drawing.Size(117, 23);
+            this.btnCreateMaclaurinSerieAccurate.TabIndex = 2;
+            this.btnCreateMaclaurinSerieAccurate.Text = "Create serie AC";
+            this.btnCreateMaclaurinSerieAccurate.UseVisualStyleBackColor = true;
+            this.btnCreateMaclaurinSerieAccurate.Click += new System.EventHandler(this.btnCreateMaclaurinSerieAccurate_Click);
+            // 
+            // tbOrder
+            // 
+            this.tbOrder.Location = new System.Drawing.Point(45, 17);
+            this.tbOrder.Name = "tbOrder";
+            this.tbOrder.Size = new System.Drawing.Size(81, 20);
+            this.tbOrder.TabIndex = 1;
             // 
             // lblOrder
             // 
@@ -352,23 +381,6 @@
             this.lblOrder.Size = new System.Drawing.Size(33, 13);
             this.lblOrder.TabIndex = 0;
             this.lblOrder.Text = "Order";
-            // 
-            // tbOrder
-            // 
-            this.tbOrder.Location = new System.Drawing.Point(45, 17);
-            this.tbOrder.Name = "tbOrder";
-            this.tbOrder.Size = new System.Drawing.Size(50, 20);
-            this.tbOrder.TabIndex = 1;
-            // 
-            // btnCreateMaclaurinSerie
-            // 
-            this.btnCreateMaclaurinSerie.Location = new System.Drawing.Point(9, 43);
-            this.btnCreateMaclaurinSerie.Name = "btnCreateMaclaurinSerie";
-            this.btnCreateMaclaurinSerie.Size = new System.Drawing.Size(86, 40);
-            this.btnCreateMaclaurinSerie.TabIndex = 2;
-            this.btnCreateMaclaurinSerie.Text = "Create serie";
-            this.btnCreateMaclaurinSerie.UseVisualStyleBackColor = true;
-            this.btnCreateMaclaurinSerie.Click += new System.EventHandler(this.btnCreateMaclaurinSerie_Click);
             // 
             // Form1
             // 
@@ -435,9 +447,10 @@
         private System.Windows.Forms.CheckBox cbRienmannAbsolute;
         private System.Windows.Forms.Label lblHumanReadableString;
         private System.Windows.Forms.GroupBox gbMaclaurin;
-        private System.Windows.Forms.Button btnCreateMaclaurinSerie;
+        private System.Windows.Forms.Button btnCreateMaclaurinSerieAccurate;
         private System.Windows.Forms.TextBox tbOrder;
         private System.Windows.Forms.Label lblOrder;
+        private System.Windows.Forms.Button btnDrawMaclaurinSeriesFast;
     }
 }
 

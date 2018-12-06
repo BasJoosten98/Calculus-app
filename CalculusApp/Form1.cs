@@ -46,7 +46,7 @@ namespace CalculusApp
         } 
         private void selectSum(NodeHolder nh)
         {
-            myDrawer.drawFunction(nh);
+            myDrawer.drawFunction(nh, true);
             lblHumanReadableString.Text = nh.GetHumanReadableString();
             pbNodeStructure.ImageLocation = nh.CreateNodeStructurePicture();
             lastSelectedFunction = nh;
@@ -147,7 +147,7 @@ namespace CalculusApp
             }
         }
 
-        private void btnCreateMaclaurinSerie_Click(object sender, EventArgs e)
+        private void btnCreateMaclaurinSerieAccurate_Click(object sender, EventArgs e)
         {
             int order;
             if(!int.TryParse(tbOrder.Text, out order))
@@ -159,7 +159,7 @@ namespace CalculusApp
             {
                 if (lastSelectedFunction != null)
                 {
-                    NodeHolder nh = lastSelectedFunction.GetMaclaurinSerie(order);
+                    NodeHolder nh = lastSelectedFunction.GetMaclaurinSerieAccurate(order);
                     selectSum(nh);
                     myFunctions.Add(nh);
                     lbFunctions.Items.Add(nh);
@@ -170,6 +170,24 @@ namespace CalculusApp
             catch(Exception ex)
             {
                 MessageBox.Show("Error while making Maclaurin serie: " + ex.Message);
+            }
+        }
+
+        private void btnDrawMaclaurinSeriesFast_Click(object sender, EventArgs e)
+        {
+            int order;
+            if (!int.TryParse(tbOrder.Text, out order))
+            {
+                MessageBox.Show("Order needs to be an integer");
+                return;
+            }
+            try
+            {
+                lastSelectedFunction.DrawMaclaurinSerieFast(myDrawer, order);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while drawing Maclaurin serie: " + ex.Message);
             }
         }
     }

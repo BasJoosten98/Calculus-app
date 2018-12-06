@@ -17,7 +17,7 @@ namespace CalculusApp
         int deltaX;
         double fromX;
         double toX;
-
+        List<System.Drawing.Color> myColor = new List<System.Drawing.Color> { System.Drawing.Color.Blue, System.Drawing.Color.Gray, System.Drawing.Color.Red, System.Drawing.Color.Black, System.Drawing.Color.Orange, System.Drawing.Color.Green, System.Drawing.Color.Purple, System.Drawing.Color.Pink, System.Drawing.Color.DarkBlue, System.Drawing.Color.DarkGreen, System.Drawing.Color.Gold, System.Drawing.Color.GreenYellow, System.Drawing.Color.DodgerBlue, System.Drawing.Color.DarkOrange, System.Drawing.Color.Bisque };
         System.Drawing.Color newtonColor = System.Drawing.Color.Red;
         System.Drawing.Color functionColor = System.Drawing.Color.Blue;
         System.Drawing.Color RienmannColor = System.Drawing.Color.Green;
@@ -50,7 +50,7 @@ namespace CalculusApp
             {
                 if (functionHasBeenDrawn)
                 {
-                    drawFunction(lastDrawnFunction);
+                    drawFunction(lastDrawnFunction, true);
                 }
                 if (newton)
                 {
@@ -133,10 +133,29 @@ namespace CalculusApp
             newtonHasBeenDrawn = true;
             myChart.Invalidate();
         }
-        public void drawFunction(NodeHolder function)
+
+        private System.Drawing.Color newColor(System.Drawing.Color curColor)
+        {
+            if (myColor.Contains(curColor))
+            {
+                int index = myColor.IndexOf(curColor);
+                if(index == myColor.Count - 1)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index++;
+                }
+                return myColor[index];
+            }
+            return myColor[0];
+        }
+        public void drawFunction(NodeHolder function, bool erase)
         {
             //clearing previous function and setting up variables------------------------
-            lastDrawnFunction = function;            
+            lastDrawnFunction = function;
+            int serieCounter;
             bool newSerieHasBeenUsed = false;
             bool yBetweenMaxAndMin = false;
             bool previousAnswerWasPossible = false;
@@ -145,15 +164,24 @@ namespace CalculusApp
             {
                 xDistance = 0.01f;
             }
-            for (int i = 0; i < myChart.Series.Count; i++)
+            if (erase)
             {
-             myChart.Series[i].Points.Clear();
+                for (int i = 0; i < myChart.Series.Count; i++)
+                {
+                    myChart.Series[i].Points.Clear();
+                }
+                functionHasBeenDrawn = false;
+                newtonHasBeenDrawn = false;
+                rienmannHasBeenDrawn = false;
+                functionColor = System.Drawing.Color.Blue;
+                
             }
-            functionHasBeenDrawn = false;
-            newtonHasBeenDrawn = false;
-            rienmannHasBeenDrawn = false;
-            int serieCounter = nextSerie(functionColor, -1);
-                      
+            else
+            {
+                functionColor = newColor(functionColor);
+            }
+            serieCounter = nextSerie(functionColor, -1);
+
             //drawing the new function-------------------------------------------
             for (double i = myChart.ChartAreas[0].AxisX.Minimum; i <= myChart.ChartAreas[0].AxisX.Maximum; i += xDistance)
             {
