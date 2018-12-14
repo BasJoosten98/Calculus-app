@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CalculusApp
 {
@@ -15,6 +16,7 @@ namespace CalculusApp
         List<NodeHolder> myFunctions;
         GraphDrawer myDrawer;
         NodeHolder lastSelectedFunction;
+        List<double> points;
         
 
         public Form1()
@@ -22,6 +24,8 @@ namespace CalculusApp
             InitializeComponent();
             myFunctions = new List<NodeHolder>();
             myDrawer = new GraphDrawer(ChartFunction);
+            myDrawer.DrawEmptyChart();
+            points = new List<double>();
         }
 
         private void btnParseSum_Click(object sender, EventArgs e)
@@ -188,6 +192,59 @@ namespace CalculusApp
             catch (Exception ex)
             {
                 MessageBox.Show("Error while drawing Maclaurin serie: " + ex.Message);
+            }
+        }
+
+        private void btnAddPointPoly_Click(object sender, EventArgs e)
+        {
+            double xValuePoly = 0;
+            double yValuePoly = 0;
+            string xValue = tbXValuePoly.Text;
+            string yValue = tbYValuePoly.Text;
+
+            if(!double.TryParse(xValue, out xValuePoly))
+            {
+                MessageBox.Show("X is in a wrong format");
+                return;
+            }
+            if (!double.TryParse(yValue, out yValuePoly))
+            {
+                MessageBox.Show("Y is in a wrong format");
+                return;
+            }
+            points.Add(xValuePoly);
+            points.Add(yValuePoly);
+            myDrawer.DrawPolyPoint(xValuePoly, yValuePoly);
+            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
+        }
+
+        private void btnResetPointsPoly_Click(object sender, EventArgs e)
+        {
+            myDrawer.RemoveAllPolyPoints();
+            points.Clear();
+            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
+        }
+
+        private void btnCalculatePoly_Click(object sender, EventArgs e)
+        {
+            if(points.Count/2 >= 2)
+            {
+                try
+                {
+                    NodeHolder nh = new NodeHolder(points);
+                    selectSum(nh);
+                    myFunctions.Add(nh);
+                    lbFunctions.Items.Add(nh);
+                    lbFunctions.SelectedIndex = lbFunctions.Items.IndexOf(nh);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("you need atleast 2 points in order to calculate the polynomial");
             }
         }
     }

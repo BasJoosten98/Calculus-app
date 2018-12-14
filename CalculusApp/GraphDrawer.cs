@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CalculusApp
 {
@@ -11,6 +12,7 @@ namespace CalculusApp
     {
         System.Windows.Forms.DataVisualization.Charting.Chart myChart;
         NodeHolder lastDrawnFunction;
+        Series pointSerie;
         bool functionHasBeenDrawn;
         bool newtonHasBeenDrawn;
         bool rienmannHasBeenDrawn;
@@ -27,7 +29,6 @@ namespace CalculusApp
             myChart = chart;
             SetAxis(10, 10);
         }
-
         public void SetAxis(int X, int Y) //NEGATIVE NUMBERS WILL BE IGNORED
         {
             bool axisChanged = false;
@@ -133,7 +134,6 @@ namespace CalculusApp
             newtonHasBeenDrawn = true;
             myChart.Invalidate();
         }
-
         private System.Drawing.Color newColor(System.Drawing.Color curColor)
         {
             if (myColor.Contains(curColor))
@@ -168,7 +168,10 @@ namespace CalculusApp
             {
                 for (int i = 0; i < myChart.Series.Count; i++)
                 {
-                    myChart.Series[i].Points.Clear();
+                    if (myChart.Series[i].Color != System.Drawing.Color.Transparent && myChart.Series[i].ChartType == SeriesChartType.Line)
+                    {
+                        myChart.Series[i].Points.Clear();
+                    }
                 }
                 functionHasBeenDrawn = false;
                 newtonHasBeenDrawn = false;
@@ -311,13 +314,49 @@ namespace CalculusApp
                 createNewSerie(color);
                 return currentSerie;
             }
-            if(myChart.Series[currentSerie].Color == color)
+            if(myChart.Series[currentSerie].Color == color && myChart.Series[currentSerie].ChartType == SeriesChartType.Line)
             {
                 return currentSerie;
             }
             else
             {
                 return nextSerie(color, currentSerie);
+            }
+        } 
+        public void DrawEmptyChart()
+        {
+            //for(int i = 0; i < myChart.Series.Count; i++) //erase all points
+            //{
+            //    myChart.Series[i].Points.Clear();
+            //}
+            int serieCounter = nextSerie(System.Drawing.Color.Transparent, -1); //get first/new trasnparent serie
+            myChart.Series[serieCounter].Points.AddXY(-1, 0);
+            myChart.Series[serieCounter].Points.AddXY(1, 0);
+        } 
+        public void DrawPolyPoint(double x, double y)
+        {
+            if(pointSerie == null)
+            {
+                Series newSerie = new Series
+                {
+                    Name = "serie" + myChart.Series.Count,
+                    Color = newtonColor, //System.Drawing.Color.Blue
+                    IsVisibleInLegend = false,
+                    IsXValueIndexed = false,
+                    ChartType = SeriesChartType.Point
+                };
+                newSerie.MarkerSize = 10;
+                myChart.Series.Add(newSerie);
+                pointSerie = newSerie;
+            }
+            pointSerie.Points.AddXY(x, y);
+
+        }
+        public void RemoveAllPolyPoints()
+        {
+            if(pointSerie != null)
+            {
+                pointSerie.Points.Clear();
             }
         }
     }

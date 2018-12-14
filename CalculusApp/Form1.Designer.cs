@@ -62,12 +62,22 @@
             this.btnCreateMaclaurinSerieAccurate = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TextBox();
             this.lblOrder = new System.Windows.Forms.Label();
+            this.gbPoly = new System.Windows.Forms.GroupBox();
+            this.btnCalculatePoly = new System.Windows.Forms.Button();
+            this.tbYValuePoly = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbXValuePoly = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnAddPointPoly = new System.Windows.Forms.Button();
+            this.btnResetPointsPoly = new System.Windows.Forms.Button();
+            this.lblNumberOfPolyPoints = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ChartFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNodeStructure)).BeginInit();
             this.gbSetAxis.SuspendLayout();
             this.gbDerivative.SuspendLayout();
             this.gbRienmannIntegral.SuspendLayout();
             this.gbMaclaurin.SuspendLayout();
+            this.gbPoly.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbSum
@@ -382,11 +392,100 @@
             this.lblOrder.TabIndex = 0;
             this.lblOrder.Text = "Order";
             // 
+            // gbPoly
+            // 
+            this.gbPoly.Controls.Add(this.lblNumberOfPolyPoints);
+            this.gbPoly.Controls.Add(this.btnResetPointsPoly);
+            this.gbPoly.Controls.Add(this.btnAddPointPoly);
+            this.gbPoly.Controls.Add(this.tbYValuePoly);
+            this.gbPoly.Controls.Add(this.btnCalculatePoly);
+            this.gbPoly.Controls.Add(this.label3);
+            this.gbPoly.Controls.Add(this.tbXValuePoly);
+            this.gbPoly.Controls.Add(this.label4);
+            this.gbPoly.Location = new System.Drawing.Point(623, 489);
+            this.gbPoly.Name = "gbPoly";
+            this.gbPoly.Size = new System.Drawing.Size(163, 93);
+            this.gbPoly.TabIndex = 19;
+            this.gbPoly.TabStop = false;
+            this.gbPoly.Text = "n-polynomial";
+            // 
+            // btnCalculatePoly
+            // 
+            this.btnCalculatePoly.Location = new System.Drawing.Point(6, 70);
+            this.btnCalculatePoly.Name = "btnCalculatePoly";
+            this.btnCalculatePoly.Size = new System.Drawing.Size(148, 23);
+            this.btnCalculatePoly.TabIndex = 1;
+            this.btnCalculatePoly.Text = "Calculate";
+            this.btnCalculatePoly.UseVisualStyleBackColor = true;
+            this.btnCalculatePoly.Click += new System.EventHandler(this.btnCalculatePoly_Click);
+            // 
+            // tbYValuePoly
+            // 
+            this.tbYValuePoly.Location = new System.Drawing.Point(93, 16);
+            this.tbYValuePoly.Name = "tbYValuePoly";
+            this.tbYValuePoly.Size = new System.Drawing.Size(41, 20);
+            this.tbYValuePoly.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(78, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Y";
+            // 
+            // tbXValuePoly
+            // 
+            this.tbXValuePoly.Location = new System.Drawing.Point(29, 16);
+            this.tbXValuePoly.Name = "tbXValuePoly";
+            this.tbXValuePoly.Size = new System.Drawing.Size(41, 20);
+            this.tbXValuePoly.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(14, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "X";
+            // 
+            // btnAddPointPoly
+            // 
+            this.btnAddPointPoly.Location = new System.Drawing.Point(6, 42);
+            this.btnAddPointPoly.Name = "btnAddPointPoly";
+            this.btnAddPointPoly.Size = new System.Drawing.Size(64, 23);
+            this.btnAddPointPoly.TabIndex = 16;
+            this.btnAddPointPoly.Text = "Add point";
+            this.btnAddPointPoly.UseVisualStyleBackColor = true;
+            this.btnAddPointPoly.Click += new System.EventHandler(this.btnAddPointPoly_Click);
+            // 
+            // btnResetPointsPoly
+            // 
+            this.btnResetPointsPoly.Location = new System.Drawing.Point(76, 42);
+            this.btnResetPointsPoly.Name = "btnResetPointsPoly";
+            this.btnResetPointsPoly.Size = new System.Drawing.Size(78, 23);
+            this.btnResetPointsPoly.TabIndex = 17;
+            this.btnResetPointsPoly.Text = "Reset points";
+            this.btnResetPointsPoly.UseVisualStyleBackColor = true;
+            this.btnResetPointsPoly.Click += new System.EventHandler(this.btnResetPointsPoly_Click);
+            // 
+            // lblNumberOfPolyPoints
+            // 
+            this.lblNumberOfPolyPoints.AutoSize = true;
+            this.lblNumberOfPolyPoints.Location = new System.Drawing.Point(140, 19);
+            this.lblNumberOfPolyPoints.Name = "lblNumberOfPolyPoints";
+            this.lblNumberOfPolyPoints.Size = new System.Drawing.Size(23, 13);
+            this.lblNumberOfPolyPoints.TabIndex = 18;
+            this.lblNumberOfPolyPoints.Text = "NR";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 590);
+            this.Controls.Add(this.gbPoly);
             this.Controls.Add(this.gbMaclaurin);
             this.Controls.Add(this.pbNodeStructure);
             this.Controls.Add(this.lblHumanReadableString);
@@ -411,6 +510,8 @@
             this.gbRienmannIntegral.PerformLayout();
             this.gbMaclaurin.ResumeLayout(false);
             this.gbMaclaurin.PerformLayout();
+            this.gbPoly.ResumeLayout(false);
+            this.gbPoly.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,6 +552,15 @@
         private System.Windows.Forms.TextBox tbOrder;
         private System.Windows.Forms.Label lblOrder;
         private System.Windows.Forms.Button btnDrawMaclaurinSeriesFast;
+        private System.Windows.Forms.GroupBox gbPoly;
+        private System.Windows.Forms.Button btnCalculatePoly;
+        private System.Windows.Forms.Button btnResetPointsPoly;
+        private System.Windows.Forms.Button btnAddPointPoly;
+        private System.Windows.Forms.TextBox tbYValuePoly;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbXValuePoly;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblNumberOfPolyPoints;
     }
 }
 

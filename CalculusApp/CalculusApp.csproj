@@ -64,6 +64,7 @@
     <Compile Include="NodeMinus.cs" />
     <Compile Include="NodeNumber.cs" />
     <Compile Include="NodePlus.cs" />
+    <Compile Include="NodePolyFunction.cs" />
     <Compile Include="NodePower.cs" />
     <Compile Include="NodeSin.cs" />
     <Compile Include="NodeTimes.cs" />

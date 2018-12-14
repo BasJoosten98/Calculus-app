@@ -29,6 +29,8 @@ namespace CalculusApp
             action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
             action2Parameter = new char[] { '+', '-', '*', '/', '^' };
             setNodes(Sum);
+            CleanUpTree();
+            CleanUpTree();
             allNodes = new List<Node>();
         }
         public NodeHolder(Node Startnode)
@@ -40,12 +42,20 @@ namespace CalculusApp
             CleanUpTree();
             allNodes = new List<Node>();
         }
+        public NodeHolder(List<double> polyPoints)
+        {
+            startNode = null;
+            action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
+            action2Parameter = new char[] { '+', '-', '*', '/', '^' };
+            startNode = GetPolyNode(polyPoints);
+            CleanUpTree();
+            CleanUpTree();
+            allNodes = new List<Node>();
+        }
         private void setNodes(string Sum)
         {
             enteredSum = Sum.ToArray<char>();
             startNode = setNodesLoop();
-            CleanUpTree();
-            CleanUpTree();
             if (startNode == null) { throw new Exception("Nothing has been filled in"); }
             enteredSum = Sum.ToArray<char>();
         }
@@ -565,7 +575,6 @@ namespace CalculusApp
             }
 
         } 
-
         public NodeHolder GetMaclaurinSerieAccurate(int order)
         {
             if(order <= 0)
@@ -608,6 +617,85 @@ namespace CalculusApp
             {
                 throw new Exception("Error while making Maclaurin serie: counter problem: " + counter);
             }
+        }
+        private Node GetPolyNode(List<double> polyPoints)
+        {
+            //create polyfunction nodes
+            List<NodePolyFunction> polyFunctions = new List<NodePolyFunction>();
+            int totalPoints = polyPoints.Count / 2;
+            int nOrder = totalPoints - 1;
+
+            for(int i = 0; i < polyPoints.Count; i += 2) //each point
+            {
+                double ans = polyPoints[i + 1];
+                List<double> xValues = new List<double>();
+
+                for(int j = nOrder; j >= 0; j-- ) //each x value
+                {
+                    double x = polyPoints[i];
+                    if(x == 0) { x = 0.000000001; }
+                    xValues.Add(Math.Pow(x, j));
+                }
+
+                NodePolyFunction newNode = new NodePolyFunction(xValues, ans);
+                polyFunctions.Add(newNode);
+
+            }
+            
+            //transform polyfunctions into ideal functions (1a + 0 + 0 = ?, 0 + 1b + 0 = ? etc.)
+            for(int i = 0; i < polyFunctions.Count; i++) //make current x value equal to 1 of this function
+            {
+                double divNumber;
+                divNumber = polyFunctions[i].xValues[i];
+
+                polyFunctions[i].divideBy(divNumber);
+
+                for(int j = 0; j < polyFunctions.Count; j++)//make current x value equal to 0 of other functions
+                {
+                    if(j != i)
+                    {
+                        double timesNumber;
+                        timesNumber = polyFunctions[j].xValues[i];
+
+                        polyFunctions[j].minusBy(timesNumber, polyFunctions[i]);
+                    }
+                }
+            }
+
+            //make the return node out of the ideal (poly) functions
+            Node headNode = new NodePlus();
+            Node tempNode = headNode;
+            for(int i = 0; i < polyFunctions.Count(); i++)
+            {
+                Node nodePow = new NodePower();
+                Node nodeTim = new NodeTimes();
+                Node nodeNum = new NodeNumber(false, false, polyFunctions[i].answer);
+                Node nodeNumLow = new NodeNumber(true, false, 1);
+                Node nodeNumUp = new NodeNumber(false, false, nOrder - i);
+
+                nodeTim.AddNode1(nodeNum);
+                nodeTim.AddNode2(nodePow);
+
+                nodePow.AddNode1(nodeNumLow);
+                nodePow.AddNode2(nodeNumUp);
+
+                if (i <= polyFunctions.Count - 3) //normal
+                {
+                    tempNode.AddNode1(nodeTim);
+                    Node nodePlus = new NodePlus();
+                    tempNode.AddNode2(nodePlus);
+                    tempNode = nodePlus;
+                }
+                else if(i <= polyFunctions.Count - 2) //one before last one
+                {
+                    tempNode.AddNode1(nodeTim);
+                }
+                else if(i <= polyFunctions.Count - 1) //last one
+                {
+                    tempNode.AddNode2(nodeTim);
+                }
+            }
+            return headNode;
         }
     }
 }

@@ -1,6 +1,56 @@
 graph calculus {
 node [ fontname = "Arial" ]
-node1 [ label = "c( )" ]
-node1 -- node2
-node2 [ label = "x" ]
+node111 [ label = "+( , )" ]
+node111 -- node113
+node111 -- node117
+node113 [ label = "*( , )" ]
+node113 -- node114
+node113 -- node112
+node114 [ label = "3.75873015873023" ]
+node112 [ label = "^( , )" ]
+node112 -- node115
+node112 -- node116
+node115 [ label = "x" ]
+node116 [ label = "5" ]
+node117 [ label = "+( , )" ]
+node117 -- node119
+node117 -- node123
+node119 [ label = "*( , )" ]
+node119 -- node120
+node119 -- node118
+node120 [ label = "-4.49523809523812" ]
+node118 [ label = "^( , )" ]
+node118 -- node121
+node118 -- node122
+node121 [ label = "x" ]
+node122 [ label = "4" ]
+node123 [ label = "+( , )" ]
+node123 -- node125
+node123 -- node129
+node125 [ label = "*( , )" ]
+node125 -- node126
+node125 -- node124
+node126 [ label = "-4.7174603174605" ]
+node124 [ label = "^( , )" ]
+node124 -- node127
+node124 -- node128
+node127 [ label = "x" ]
+node128 [ label = "3" ]
+node129 [ label = "+( , )" ]
+node129 -- node131
+node129 -- node135
+node131 [ label = "*( , )" ]
+node131 -- node132
+node131 -- node130
+node132 [ label = "5.46190476190472" ]
+node130 [ label = "^( , )" ]
+node130 -- node133
+node130 -- node134
+node133 [ label = "x" ]
+node134 [ label = "2" ]
+node135 [ label = "+( , )" ]
+node135 -- node146
+node135 -- node148
+node146 [ label = "0.708730158730205x" ]
+node148 [ label = "-1.21666666666665" ]
 }
