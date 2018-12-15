@@ -41,10 +41,6 @@ namespace CalculusApp
                 double answer = 0;
                 double node1Answer = node1.GetValueForX(X);
                 double node2Answer = node2.GetValueForX(X);
-                if((decimal)(node1Answer / node2Answer) > decimal.MaxValue)
-                {
-                    throw new Exception("division: too large number as outcome");
-                }
                 answer = node1Answer / node2Answer;
                 return answer;
             }

@@ -14,9 +14,9 @@ namespace CalculusApp
         //fields
         Node startNode;
         char[] enteredSum;
-        char[] action1Parameter;
-        char[] action2Parameter;
-        List<Node> allNodes;
+        char[] action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
+        char[] action2Parameter = new char[] { '+', '-', '*', '/', '^' };
+        List<Node> allNodes = new List<Node>();
 
         
         //properties
@@ -26,31 +26,22 @@ namespace CalculusApp
         public NodeHolder(string Sum)
         {
             startNode = null;
-            action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
-            action2Parameter = new char[] { '+', '-', '*', '/', '^' };
             setNodes(Sum);
             CleanUpTree();
             CleanUpTree();
-            allNodes = new List<Node>();
         }
         public NodeHolder(Node Startnode)
         {
             startNode = Startnode;          
-            action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
-            action2Parameter = new char[] { '+', '-', '*', '/', '^' };
             CleanUpTree();
             CleanUpTree();
-            allNodes = new List<Node>();
         }
         public NodeHolder(List<double> polyPoints)
         {
             startNode = null;
-            action1Parameter = new char[] { 's', 'c', 'e', 'l', '!' };
-            action2Parameter = new char[] { '+', '-', '*', '/', '^' };
             startNode = GetPolyNode(polyPoints);
             CleanUpTree();
             CleanUpTree();
-            allNodes = new List<Node>();
         }
         private void setNodes(string Sum)
         {

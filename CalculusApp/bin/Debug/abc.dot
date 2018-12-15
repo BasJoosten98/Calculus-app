@@ -1,56 +1,92 @@
 graph calculus {
 node [ fontname = "Arial" ]
-node111 [ label = "+( , )" ]
-node111 -- node113
-node111 -- node117
-node113 [ label = "*( , )" ]
-node113 -- node114
-node113 -- node112
-node114 [ label = "3.75873015873023" ]
-node112 [ label = "^( , )" ]
-node112 -- node115
-node112 -- node116
-node115 [ label = "x" ]
-node116 [ label = "5" ]
-node117 [ label = "+( , )" ]
-node117 -- node119
-node117 -- node123
-node119 [ label = "*( , )" ]
-node119 -- node120
-node119 -- node118
-node120 [ label = "-4.49523809523812" ]
-node118 [ label = "^( , )" ]
-node118 -- node121
-node118 -- node122
-node121 [ label = "x" ]
-node122 [ label = "4" ]
-node123 [ label = "+( , )" ]
-node123 -- node125
-node123 -- node129
-node125 [ label = "*( , )" ]
-node125 -- node126
-node125 -- node124
-node126 [ label = "-4.7174603174605" ]
-node124 [ label = "^( , )" ]
-node124 -- node127
-node124 -- node128
-node127 [ label = "x" ]
-node128 [ label = "3" ]
-node129 [ label = "+( , )" ]
-node129 -- node131
-node129 -- node135
-node131 [ label = "*( , )" ]
-node131 -- node132
-node131 -- node130
-node132 [ label = "5.46190476190472" ]
-node130 [ label = "^( , )" ]
-node130 -- node133
-node130 -- node134
-node133 [ label = "x" ]
-node134 [ label = "2" ]
-node135 [ label = "+( , )" ]
-node135 -- node146
-node135 -- node148
-node146 [ label = "0.708730158730205x" ]
-node148 [ label = "-1.21666666666665" ]
+node437 [ label = "+( , )" ]
+node437 -- node439
+node437 -- node443
+node439 [ label = "*( , )" ]
+node439 -- node440
+node439 -- node438
+node440 [ label = "5.85002349037978E-05" ]
+node438 [ label = "^( , )" ]
+node438 -- node441
+node438 -- node442
+node441 [ label = "x" ]
+node442 [ label = "8" ]
+node443 [ label = "+( , )" ]
+node443 -- node445
+node443 -- node449
+node445 [ label = "*( , )" ]
+node445 -- node446
+node445 -- node444
+node446 [ label = "0.000431422625274028" ]
+node444 [ label = "^( , )" ]
+node444 -- node447
+node444 -- node448
+node447 [ label = "x" ]
+node448 [ label = "7" ]
+node449 [ label = "+( , )" ]
+node449 -- node451
+node449 -- node455
+node451 [ label = "*( , )" ]
+node451 -- node452
+node451 -- node450
+node452 [ label = "-0.00486201834051789" ]
+node450 [ label = "^( , )" ]
+node450 -- node453
+node450 -- node454
+node453 [ label = "x" ]
+node454 [ label = "6" ]
+node455 [ label = "+( , )" ]
+node455 -- node457
+node455 -- node461
+node457 [ label = "*( , )" ]
+node457 -- node458
+node457 -- node456
+node458 [ label = "-0.0335188020082418" ]
+node456 [ label = "^( , )" ]
+node456 -- node459
+node456 -- node460
+node459 [ label = "x" ]
+node460 [ label = "5" ]
+node461 [ label = "+( , )" ]
+node461 -- node463
+node461 -- node467
+node463 [ label = "*( , )" ]
+node463 -- node464
+node463 -- node462
+node464 [ label = "0.0989436722332764" ]
+node462 [ label = "^( , )" ]
+node462 -- node465
+node462 -- node466
+node465 [ label = "x" ]
+node466 [ label = "4" ]
+node467 [ label = "+( , )" ]
+node467 -- node469
+node467 -- node473
+node469 [ label = "*( , )" ]
+node469 -- node470
+node469 -- node468
+node470 [ label = "0.689322664803424" ]
+node468 [ label = "^( , )" ]
+node468 -- node471
+node468 -- node472
+node471 [ label = "x" ]
+node472 [ label = "3" ]
+node473 [ label = "+( , )" ]
+node473 -- node475
+node473 -- node479
+node475 [ label = "*( , )" ]
+node475 -- node476
+node475 -- node474
+node476 [ label = "-0.0991734954232477" ]
+node474 [ label = "^( , )" ]
+node474 -- node477
+node474 -- node478
+node477 [ label = "x" ]
+node478 [ label = "2" ]
+node479 [ label = "+( , )" ]
+node479 -- node490
+node479 -- node492
+node490 [ label = "-2.58933127910541x" ]
+node492 [ label = "-8.10959356043836" ]
 }

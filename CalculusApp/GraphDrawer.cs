@@ -77,7 +77,7 @@ namespace CalculusApp
             }
             for (int i = 0; i < myChart.Series.Count; i++)
             {
-                if (myChart.Series[i].Color == newtonColor)
+                if (myChart.Series[i].Color == newtonColor && myChart.Series[i].ChartType == SeriesChartType.Line)
                 {
                     myChart.Series[i].Points.Clear();
                 }

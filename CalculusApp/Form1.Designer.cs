@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btnParseSum = new System.Windows.Forms.Button();
             this.tbXValue = new System.Windows.Forms.TextBox();
@@ -63,14 +63,16 @@
             this.tbOrder = new System.Windows.Forms.TextBox();
             this.lblOrder = new System.Windows.Forms.Label();
             this.gbPoly = new System.Windows.Forms.GroupBox();
-            this.btnCalculatePoly = new System.Windows.Forms.Button();
+            this.lblNumberOfPolyPoints = new System.Windows.Forms.Label();
+            this.btnResetPointsPoly = new System.Windows.Forms.Button();
+            this.btnAddPointPoly = new System.Windows.Forms.Button();
             this.tbYValuePoly = new System.Windows.Forms.TextBox();
+            this.btnCalculatePoly = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tbXValuePoly = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnAddPointPoly = new System.Windows.Forms.Button();
-            this.btnResetPointsPoly = new System.Windows.Forms.Button();
-            this.lblNumberOfPolyPoints = new System.Windows.Forms.Label();
+            this.ChartMouseX = new System.Windows.Forms.Label();
+            this.ChartMouseY = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ChartFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNodeStructure)).BeginInit();
             this.gbSetAxis.SuspendLayout();
@@ -125,13 +127,15 @@
             // 
             // ChartFunction
             // 
-            chartArea2.Name = "ChartArea1";
-            this.ChartFunction.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.ChartFunction.ChartAreas.Add(chartArea1);
             this.ChartFunction.Location = new System.Drawing.Point(13, 84);
             this.ChartFunction.Name = "ChartFunction";
             this.ChartFunction.Size = new System.Drawing.Size(455, 310);
             this.ChartFunction.TabIndex = 5;
             this.ChartFunction.Text = "chart1";
+            this.ChartFunction.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChartFunction_MouseDown);
+            this.ChartFunction.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChartFunction_MouseMove);
             // 
             // tbXAxisValue
             // 
@@ -177,9 +181,9 @@
             // 
             // pbNodeStructure
             // 
-            this.pbNodeStructure.Location = new System.Drawing.Point(484, 11);
+            this.pbNodeStructure.Location = new System.Drawing.Point(484, 3);
             this.pbNodeStructure.Name = "pbNodeStructure";
-            this.pbNodeStructure.Size = new System.Drawing.Size(472, 472);
+            this.pbNodeStructure.Size = new System.Drawing.Size(472, 496);
             this.pbNodeStructure.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbNodeStructure.TabIndex = 10;
             this.pbNodeStructure.TabStop = false;
@@ -207,7 +211,7 @@
             // lbFunctions
             // 
             this.lbFunctions.FormattingEnabled = true;
-            this.lbFunctions.Location = new System.Drawing.Point(13, 397);
+            this.lbFunctions.Location = new System.Drawing.Point(13, 413);
             this.lbFunctions.Name = "lbFunctions";
             this.lbFunctions.Size = new System.Drawing.Size(128, 186);
             this.lbFunctions.TabIndex = 13;
@@ -221,7 +225,7 @@
             this.gbSetAxis.Controls.Add(this.label2);
             this.gbSetAxis.Controls.Add(this.tbXAxisValue);
             this.gbSetAxis.Controls.Add(this.label1);
-            this.gbSetAxis.Location = new System.Drawing.Point(309, 400);
+            this.gbSetAxis.Location = new System.Drawing.Point(309, 416);
             this.gbSetAxis.Name = "gbSetAxis";
             this.gbSetAxis.Size = new System.Drawing.Size(159, 82);
             this.gbSetAxis.TabIndex = 14;
@@ -232,7 +236,7 @@
             // 
             this.gbDerivative.Controls.Add(this.btnDerivativeByNewton);
             this.gbDerivative.Controls.Add(this.btnDerivativeByFunction);
-            this.gbDerivative.Location = new System.Drawing.Point(152, 400);
+            this.gbDerivative.Location = new System.Drawing.Point(152, 416);
             this.gbDerivative.Name = "gbDerivative";
             this.gbDerivative.Size = new System.Drawing.Size(151, 82);
             this.gbDerivative.TabIndex = 15;
@@ -250,7 +254,7 @@
             this.gbRienmannIntegral.Controls.Add(this.lblFromX);
             this.gbRienmannIntegral.Controls.Add(this.tbDeltaX);
             this.gbRienmannIntegral.Controls.Add(this.lblDeltaX);
-            this.gbRienmannIntegral.Location = new System.Drawing.Point(148, 489);
+            this.gbRienmannIntegral.Location = new System.Drawing.Point(148, 505);
             this.gbRienmannIntegral.Name = "gbRienmannIntegral";
             this.gbRienmannIntegral.Size = new System.Drawing.Size(320, 93);
             this.gbRienmannIntegral.TabIndex = 16;
@@ -349,7 +353,7 @@
             this.gbMaclaurin.Controls.Add(this.btnCreateMaclaurinSerieAccurate);
             this.gbMaclaurin.Controls.Add(this.tbOrder);
             this.gbMaclaurin.Controls.Add(this.lblOrder);
-            this.gbMaclaurin.Location = new System.Drawing.Point(484, 489);
+            this.gbMaclaurin.Location = new System.Drawing.Point(484, 505);
             this.gbMaclaurin.Name = "gbMaclaurin";
             this.gbMaclaurin.Size = new System.Drawing.Size(132, 93);
             this.gbMaclaurin.TabIndex = 18;
@@ -402,12 +406,48 @@
             this.gbPoly.Controls.Add(this.label3);
             this.gbPoly.Controls.Add(this.tbXValuePoly);
             this.gbPoly.Controls.Add(this.label4);
-            this.gbPoly.Location = new System.Drawing.Point(623, 489);
+            this.gbPoly.Location = new System.Drawing.Point(623, 505);
             this.gbPoly.Name = "gbPoly";
             this.gbPoly.Size = new System.Drawing.Size(163, 93);
             this.gbPoly.TabIndex = 19;
             this.gbPoly.TabStop = false;
             this.gbPoly.Text = "n-polynomial";
+            // 
+            // lblNumberOfPolyPoints
+            // 
+            this.lblNumberOfPolyPoints.AutoSize = true;
+            this.lblNumberOfPolyPoints.Location = new System.Drawing.Point(140, 19);
+            this.lblNumberOfPolyPoints.Name = "lblNumberOfPolyPoints";
+            this.lblNumberOfPolyPoints.Size = new System.Drawing.Size(23, 13);
+            this.lblNumberOfPolyPoints.TabIndex = 18;
+            this.lblNumberOfPolyPoints.Text = "NR";
+            // 
+            // btnResetPointsPoly
+            // 
+            this.btnResetPointsPoly.Location = new System.Drawing.Point(76, 42);
+            this.btnResetPointsPoly.Name = "btnResetPointsPoly";
+            this.btnResetPointsPoly.Size = new System.Drawing.Size(78, 23);
+            this.btnResetPointsPoly.TabIndex = 17;
+            this.btnResetPointsPoly.Text = "Reset points";
+            this.btnResetPointsPoly.UseVisualStyleBackColor = true;
+            this.btnResetPointsPoly.Click += new System.EventHandler(this.btnResetPointsPoly_Click);
+            // 
+            // btnAddPointPoly
+            // 
+            this.btnAddPointPoly.Location = new System.Drawing.Point(6, 42);
+            this.btnAddPointPoly.Name = "btnAddPointPoly";
+            this.btnAddPointPoly.Size = new System.Drawing.Size(64, 23);
+            this.btnAddPointPoly.TabIndex = 16;
+            this.btnAddPointPoly.Text = "Add point";
+            this.btnAddPointPoly.UseVisualStyleBackColor = true;
+            this.btnAddPointPoly.Click += new System.EventHandler(this.btnAddPointPoly_Click);
+            // 
+            // tbYValuePoly
+            // 
+            this.tbYValuePoly.Location = new System.Drawing.Point(93, 16);
+            this.tbYValuePoly.Name = "tbYValuePoly";
+            this.tbYValuePoly.Size = new System.Drawing.Size(41, 20);
+            this.tbYValuePoly.TabIndex = 14;
             // 
             // btnCalculatePoly
             // 
@@ -418,13 +458,6 @@
             this.btnCalculatePoly.Text = "Calculate";
             this.btnCalculatePoly.UseVisualStyleBackColor = true;
             this.btnCalculatePoly.Click += new System.EventHandler(this.btnCalculatePoly_Click);
-            // 
-            // tbYValuePoly
-            // 
-            this.tbYValuePoly.Location = new System.Drawing.Point(93, 16);
-            this.tbYValuePoly.Name = "tbYValuePoly";
-            this.tbYValuePoly.Size = new System.Drawing.Size(41, 20);
-            this.tbYValuePoly.TabIndex = 14;
             // 
             // label3
             // 
@@ -451,40 +484,31 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "X";
             // 
-            // btnAddPointPoly
+            // ChartMouseX
             // 
-            this.btnAddPointPoly.Location = new System.Drawing.Point(6, 42);
-            this.btnAddPointPoly.Name = "btnAddPointPoly";
-            this.btnAddPointPoly.Size = new System.Drawing.Size(64, 23);
-            this.btnAddPointPoly.TabIndex = 16;
-            this.btnAddPointPoly.Text = "Add point";
-            this.btnAddPointPoly.UseVisualStyleBackColor = true;
-            this.btnAddPointPoly.Click += new System.EventHandler(this.btnAddPointPoly_Click);
+            this.ChartMouseX.AutoSize = true;
+            this.ChartMouseX.Location = new System.Drawing.Point(13, 397);
+            this.ChartMouseX.Name = "ChartMouseX";
+            this.ChartMouseX.Size = new System.Drawing.Size(52, 13);
+            this.ChartMouseX.TabIndex = 19;
+            this.ChartMouseX.Text = "MouseX: ";
             // 
-            // btnResetPointsPoly
+            // ChartMouseY
             // 
-            this.btnResetPointsPoly.Location = new System.Drawing.Point(76, 42);
-            this.btnResetPointsPoly.Name = "btnResetPointsPoly";
-            this.btnResetPointsPoly.Size = new System.Drawing.Size(78, 23);
-            this.btnResetPointsPoly.TabIndex = 17;
-            this.btnResetPointsPoly.Text = "Reset points";
-            this.btnResetPointsPoly.UseVisualStyleBackColor = true;
-            this.btnResetPointsPoly.Click += new System.EventHandler(this.btnResetPointsPoly_Click);
-            // 
-            // lblNumberOfPolyPoints
-            // 
-            this.lblNumberOfPolyPoints.AutoSize = true;
-            this.lblNumberOfPolyPoints.Location = new System.Drawing.Point(140, 19);
-            this.lblNumberOfPolyPoints.Name = "lblNumberOfPolyPoints";
-            this.lblNumberOfPolyPoints.Size = new System.Drawing.Size(23, 13);
-            this.lblNumberOfPolyPoints.TabIndex = 18;
-            this.lblNumberOfPolyPoints.Text = "NR";
+            this.ChartMouseY.AutoSize = true;
+            this.ChartMouseY.Location = new System.Drawing.Point(233, 397);
+            this.ChartMouseY.Name = "ChartMouseY";
+            this.ChartMouseY.Size = new System.Drawing.Size(52, 13);
+            this.ChartMouseY.TabIndex = 20;
+            this.ChartMouseY.Text = "MouseY: ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 590);
+            this.ClientSize = new System.Drawing.Size(963, 604);
+            this.Controls.Add(this.ChartMouseY);
+            this.Controls.Add(this.ChartMouseX);
             this.Controls.Add(this.gbPoly);
             this.Controls.Add(this.gbMaclaurin);
             this.Controls.Add(this.pbNodeStructure);
@@ -561,6 +585,8 @@
         private System.Windows.Forms.TextBox tbXValuePoly;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblNumberOfPolyPoints;
+        private System.Windows.Forms.Label ChartMouseX;
+        private System.Windows.Forms.Label ChartMouseY;
     }
 }
 

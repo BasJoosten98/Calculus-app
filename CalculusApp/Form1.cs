@@ -17,6 +17,7 @@ namespace CalculusApp
         GraphDrawer myDrawer;
         NodeHolder lastSelectedFunction;
         List<double> points;
+        bool appIsDoneLoading;
         
 
         public Form1()
@@ -26,6 +27,7 @@ namespace CalculusApp
             myDrawer = new GraphDrawer(ChartFunction);
             myDrawer.DrawEmptyChart();
             points = new List<double>();
+            appIsDoneLoading = true;
         }
 
         private void btnParseSum_Click(object sender, EventArgs e)
@@ -246,6 +248,39 @@ namespace CalculusApp
             {
                 MessageBox.Show("you need atleast 2 points in order to calculate the polynomial");
             }
+        }
+
+        private void ChartFunction_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                ChartArea chartArea = ChartFunction.ChartAreas[0];
+                double xValue = chartArea.AxisX.PixelPositionToValue(e.X);
+                double yValue = chartArea.AxisY.PixelPositionToValue(e.Y);
+
+                ChartMouseX.Text = "MouseX: " + xValue.ToString();
+                ChartMouseY.Text = "MouseY: " + yValue.ToString();
+            }
+            catch
+            {
+                //do nothing
+            }
+        }
+
+        private void ChartFunction_MouseDown(object sender, MouseEventArgs e)
+        {
+            string x = ChartMouseX.Text.Substring(8);
+            string y = ChartMouseY.Text.Substring(8);
+
+            double xValuePoly;
+            double yValuePoly;
+            double.TryParse(x, out xValuePoly);
+            double.TryParse(y, out yValuePoly);
+
+            points.Add(xValuePoly);
+            points.Add(yValuePoly);
+            myDrawer.DrawPolyPoint(xValuePoly, yValuePoly);
+            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
         }
     }
 }
