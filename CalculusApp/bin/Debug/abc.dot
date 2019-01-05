@@ -1,92 +1,88 @@
 graph calculus {
 node [ fontname = "Arial" ]
-node437 [ label = "+( , )" ]
-node437 -- node439
-node437 -- node443
-node439 [ label = "*( , )" ]
-node439 -- node440
-node439 -- node438
-node440 [ label = "5.85002349037978E-05" ]
-node438 [ label = "^( , )" ]
-node438 -- node441
-node438 -- node442
-node441 [ label = "x" ]
-node442 [ label = "8" ]
-node443 [ label = "+( , )" ]
-node443 -- node445
-node443 -- node449
-node445 [ label = "*( , )" ]
-node445 -- node446
-node445 -- node444
-node446 [ label = "0.000431422625274028" ]
-node444 [ label = "^( , )" ]
-node444 -- node447
-node444 -- node448
-node447 [ label = "x" ]
-node448 [ label = "7" ]
-node449 [ label = "+( , )" ]
-node449 -- node451
-node449 -- node455
-node451 [ label = "*( , )" ]
-node451 -- node452
-node451 -- node450
-node452 [ label = "-0.00486201834051789" ]
-node450 [ label = "^( , )" ]
-node450 -- node453
-node450 -- node454
-node453 [ label = "x" ]
-node454 [ label = "6" ]
-node455 [ label = "+( , )" ]
-node455 -- node457
-node455 -- node461
-node457 [ label = "*( , )" ]
-node457 -- node458
-node457 -- node456
-node458 [ label = "-0.0335188020082418" ]
-node456 [ label = "^( , )" ]
-node456 -- node459
-node456 -- node460
-node459 [ label = "x" ]
-node460 [ label = "5" ]
-node461 [ label = "+( , )" ]
-node461 -- node463
-node461 -- node467
-node463 [ label = "*( , )" ]
-node463 -- node464
-node463 -- node462
-node464 [ label = "0.0989436722332764" ]
-node462 [ label = "^( , )" ]
-node462 -- node465
-node462 -- node466
-node465 [ label = "x" ]
-node466 [ label = "4" ]
-node467 [ label = "+( , )" ]
-node467 -- node469
-node467 -- node473
-node469 [ label = "*( , )" ]
-node469 -- node470
-node469 -- node468
-node470 [ label = "0.689322664803424" ]
-node468 [ label = "^( , )" ]
-node468 -- node471
-node468 -- node472
-node471 [ label = "x" ]
-node472 [ label = "3" ]
-node473 [ label = "+( , )" ]
-node473 -- node475
-node473 -- node479
-node475 [ label = "*( , )" ]
-node475 -- node476
-node475 -- node474
-node476 [ label = "-0.0991734954232477" ]
-node474 [ label = "^( , )" ]
-node474 -- node477
-node474 -- node478
-node477 [ label = "x" ]
-node478 [ label = "2" ]
-node479 [ label = "+( , )" ]
-node479 -- node490
-node479 -- node492
-node490 [ label = "-2.58933127910541x" ]
-node492 [ label = "-8.10959356043836" ]
+node23 [ label = "+( , )" ]
+node23 -- node33456048
+node23 -- node57
+node33456048 [ label = "1" ]
+node57 [ label = "+( , )" ]
+node57 -- node33456051
+node57 -- node112
+node33456051 [ label = "x" ]
+node112 [ label = "+( , )" ]
+node112 -- node107
+node112 -- node229
+node107 [ label = "^( , )" ]
+node107 -- node110
+node107 -- node111
+node110 [ label = "x" ]
+node111 [ label = "2" ]
+node229 [ label = "+( , )" ]
+node229 -- node224
+node229 -- node558
+node224 [ label = "^( , )" ]
+node224 -- node227
+node224 -- node228
+node227 [ label = "x" ]
+node228 [ label = "3" ]
+node558 [ label = "+( , )" ]
+node558 -- node553
+node558 -- node1364
+node553 [ label = "^( , )" ]
+node553 -- node556
+node553 -- node557
+node556 [ label = "x" ]
+node557 [ label = "4" ]
+node1364 [ label = "+( , )" ]
+node1364 -- node1359
+node1364 -- node4320
+node1359 [ label = "^( , )" ]
+node1359 -- node1362
+node1359 -- node1363
+node1362 [ label = "x" ]
+node1363 [ label = "5" ]
+node4320 [ label = "+( , )" ]
+node4320 -- node4315
+node4320 -- node17658
+node4315 [ label = "^( , )" ]
+node4315 -- node4318
+node4315 -- node4319
+node4318 [ label = "x" ]
+node4319 [ label = "6" ]
+node17658 [ label = "+( , )" ]
+node17658 -- node17653
+node17658 -- node90381
+node17653 [ label = "^( , )" ]
+node17653 -- node17656
+node17653 -- node17657
+node17656 [ label = "x" ]
+node17657 [ label = "7" ]
+node90381 [ label = "+( , )" ]
+node90381 -- node90376
+node90381 -- node558384
+node90376 [ label = "^( , )" ]
+node90376 -- node90379
+node90376 -- node90380
+node90379 [ label = "x" ]
+node90380 [ label = "8" ]
+node558384 [ label = "+( , )" ]
+node558384 -- node558379
+node558384 -- node4041084
+node558379 [ label = "^( , )" ]
+node558379 -- node558382
+node558379 -- node558383
+node558382 [ label = "x" ]
+node558383 [ label = "9" ]
+node4041084 [ label = "+( , )" ]
+node4041084 -- node4041079
+node4041084 -- node33456040
+node4041079 [ label = "^( , )" ]
+node4041079 -- node4041082
+node4041079 -- node4041083
+node4041082 [ label = "x" ]
+node4041083 [ label = "10" ]
+node33456040 [ label = "^( , )" ]
+node33456040 -- node33456043
+node33456040 -- node33456044
+node33456043 [ label = "x" ]
+node33456044 [ label = "11" ]
 }

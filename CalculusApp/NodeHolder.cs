@@ -601,6 +601,8 @@ namespace CalculusApp
                 Node nodePlus = new NodePlus();
                 nodePlus.AddNode1(nodeTim);
                 curNode = curNode.GetDerivative();
+                Node receivedReplacementNode;
+                curNode = curNode.MakeNodeClean(null, out receivedReplacementNode);
                 nodePlus.AddNode2(getMaclaurinSerieRecursiveAccurate(counter + 1, order, curNode));
                 return nodePlus;
             }

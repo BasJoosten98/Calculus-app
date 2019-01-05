@@ -27,40 +27,40 @@ namespace CalculusApp
         public GraphDrawer(System.Windows.Forms.DataVisualization.Charting.Chart chart)
         {
             myChart = chart;
-            SetAxis(10, 10);
+            SetAxis(-10, 10, -10, 10);
         }
-        public void SetAxis(int X, int Y) //NEGATIVE NUMBERS WILL BE IGNORED
+        public void SetAxis(double xFrom, double xTo, double yFrom, double yTo) 
         {
-            bool axisChanged = false;
-            if (X > 0)
+            if (xFrom >= xTo)
             {
-                myChart.ChartAreas[0].AxisX.Maximum = X;
-                myChart.ChartAreas[0].AxisX.Minimum = -X;
-                axisChanged = true;
+                throw new Exception("To X must be larger than From X");
             }
-            if (Y > 0)
+            if (yFrom >= yTo)
             {
-                myChart.ChartAreas[0].AxisY.Maximum = Y;
-                myChart.ChartAreas[0].AxisY.Minimum = -Y;
-                axisChanged = true;
+                throw new Exception("To Y must be larger than From Y");
             }
+
+            myChart.ChartAreas[0].AxisX.Maximum = xTo;
+            myChart.ChartAreas[0].AxisX.Minimum = xFrom;
+            myChart.ChartAreas[0].AxisX.Interval = (xTo - xFrom) / 4;
+
+            myChart.ChartAreas[0].AxisY.Maximum = yTo;
+            myChart.ChartAreas[0].AxisY.Minimum = yFrom;
+            myChart.ChartAreas[0].AxisY.Interval = (yTo - yFrom) / 4;
 
             bool newton = newtonHasBeenDrawn;
             bool rienmann = rienmannHasBeenDrawn;
-            if (axisChanged)
+            if (functionHasBeenDrawn)
             {
-                if (functionHasBeenDrawn)
-                {
-                    drawFunction(lastDrawnFunction, true);
-                }
-                if (newton)
-                {
-                    drawNewton(lastDrawnFunction);
-                }
-                if (rienmann)
-                {
-                    drawRienmann(lastDrawnFunction, deltaX, fromX, toX);
-                }
+                drawFunction(lastDrawnFunction, true);
+            }
+            if (newton)
+            {
+                drawNewton(lastDrawnFunction);
+            }
+            if (rienmann)
+            {
+                drawRienmann(lastDrawnFunction, deltaX, fromX, toX);
             }
         }
         public void drawNewton(NodeHolder function)

@@ -277,27 +277,36 @@ namespace CalculusApp
         {
             if (cleanNode1 is NodeNumber && cleanNode2 is NodeNumber)
             {
+                int negOrPos = 0;
                 if (((NodeNumber)cleanNode1).Number == ((NodeNumber)cleanNode2).Number)
+                {
+                    negOrPos = 1;                    
+                }
+                else if (((NodeNumber)cleanNode1).Number == -1 * ((NodeNumber)cleanNode2).Number)
+                {
+                    negOrPos = -1;
+                }
+                if(negOrPos != 0)
                 {
                     if (cleanNode1.ContainsX() == cleanNode2.ContainsX() && cleanNode1.ContainsP() == cleanNode2.ContainsP())
                     {
                         Node newNumberNode;
-                        newNumberNode = new NodeNumber(false, false, 1);
+                        newNumberNode = new NodeNumber(false, false, negOrPos);
                         return newNumberNode;
                     }
                     else if (cleanNode1.ContainsX() == cleanNode2.ContainsX() && !cleanNode2.ContainsP())
                     {
                         Node newNumberNode;
-                        newNumberNode = new NodeNumber(false, true, 1);
+                        newNumberNode = new NodeNumber(false, true, negOrPos);
                         return newNumberNode;
                     }
                     else if (cleanNode1.ContainsP() == cleanNode2.ContainsP() && !cleanNode2.ContainsX())
                     {
                         Node newNumberNode;
-                        newNumberNode = new NodeNumber(true, false, 1);
+                        newNumberNode = new NodeNumber(true, false, negOrPos);
                         return newNumberNode;
                     }
-                }                
+                }
             }
             if (cleanNode1 is NodeNumber)
             {
@@ -325,6 +334,10 @@ namespace CalculusApp
                         nodeDiv.AddNode2(new NodeNumber(cleanNode2.ContainsX(), cleanNode2.ContainsP(), 1));
                         return nodeDiv;
                     }
+                }
+                if(((NodeNumber)cleanNode2).Number == 1)
+                {
+                    return cleanNode1;
                 }
             }          
             return null;

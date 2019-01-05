@@ -75,18 +75,56 @@ namespace CalculusApp
         }    
         private void btnSetAxis_Click(object sender, EventArgs e)
         {
-            int xAxisLenght = -1;
-            int yAxisLenght = -1;
-            int number;
-            if(int.TryParse(tbXAxisValue.Text, out number))
+            double xAxisFrom = 0;
+            double yAxisFrom = 0;
+            double xAxisTo = 0;
+            double yAxisTo = 0;
+            double number;
+            bool axisSuccesful = true;
+
+            //x axis check
+            if(double.TryParse(tbXAxisFromValue.Text, out number))
             {
-                xAxisLenght = Math.Abs(number);
+                xAxisFrom = number;
             }
-            if (int.TryParse(tbYAxisValue.Text, out number))
+            else { axisSuccesful = false; }
+            if (double.TryParse(tbXAxisToValue.Text, out number))
             {
-                yAxisLenght = Math.Abs(number);
+                xAxisTo = number;
             }
-            myDrawer.SetAxis(xAxisLenght, yAxisLenght);
+            else { axisSuccesful = false; }
+            if (!axisSuccesful)
+            {
+                MessageBox.Show("X axis is in a wrong format or has not been fully filled in");
+                return;
+            }
+
+            //y axis check
+            if (double.TryParse(tbYAxisFromValue.Text, out number))
+            {
+                yAxisFrom = number;
+            }
+            else { axisSuccesful = false; }
+            if (double.TryParse(tbYAxisToValue.Text, out number))
+            {
+                yAxisTo = number;
+            }
+            else { axisSuccesful = false; }
+            if (!axisSuccesful)
+            {
+                MessageBox.Show("Y axis is in a wrong format or has not been fully filled in");
+                return;
+            }
+
+            //changing the axis
+            try
+            {
+                myDrawer.SetAxis(xAxisFrom, xAxisTo, yAxisFrom, yAxisTo);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Set axis failed: " + ex.Message);
+            }
         }
         private void btnDerivativeByFunction_Click(object sender, EventArgs e)
         {
@@ -122,23 +160,61 @@ namespace CalculusApp
         {
             bool absolute = cbRienmannAbsolute.Checked;
             int deltaX;
-            double toX;
-            double fromX;
+            double toX = 0;
+            double fromX = 0;
 
+            if(lastSelectedFunction == null)
+            {
+                MessageBox.Show("Please select a function first");
+                return;
+            }
             if(!int.TryParse(tbDeltaX.Text, out deltaX))
             {
                 MessageBox.Show("Delta X is in a wrong format");
                 return;
             }
-            try
+            if (tbToX.Text != "" || tbFromX.Text != "") 
             {
-                toX = Convert.ToDouble(tbToX.Text);
-                fromX = Convert.ToDouble(tbFromX.Text);
+                try
+                {
+                    toX = Convert.ToDouble(tbToX.Text);
+                    fromX = Convert.ToDouble(tbFromX.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("To X OR From X is in a wrong format. Please fix this before continueing");
+                    return;
+                }                
             }
-            catch
+            else
             {
-                MessageBox.Show("To X OR From X is in a wrong format");
-                return;
+                if(points.Count != 4)
+                {
+                    if(points.Count == 0)
+                    {
+                        MessageBox.Show("Please draw 2 points or fill in To X and From X");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Only 2 points should be drawn for this calculation (no more & no less). Or you can fill in To X and From X.");
+                    }
+                    return;
+                }
+                if(points[0] > points[2])
+                {
+                    toX = points[0];
+                    fromX = points[2];
+                }
+                else if (points[0] < points[2])
+                {
+                    toX = points[2];
+                    fromX = points[0];
+                }
+                else
+                {
+                    MessageBox.Show("Both points are located at the same x position, this is not allowed for this calculation");
+                    return;
+                }
             }
 
             try
@@ -189,7 +265,11 @@ namespace CalculusApp
             }
             try
             {
-                lastSelectedFunction.DrawMaclaurinSerieFast(myDrawer, order);
+                if (lastSelectedFunction != null)
+                {
+                    lastSelectedFunction.DrawMaclaurinSerieFast(myDrawer, order);
+                }
+                else { throw new Exception("No function has been selected"); }
             }
             catch (Exception ex)
             {
@@ -217,14 +297,14 @@ namespace CalculusApp
             points.Add(xValuePoly);
             points.Add(yValuePoly);
             myDrawer.DrawPolyPoint(xValuePoly, yValuePoly);
-            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
+            lblNumberOfPoints.Text = "Total Points: " + (points.Count / 2).ToString();
         }
 
         private void btnResetPointsPoly_Click(object sender, EventArgs e)
         {
             myDrawer.RemoveAllPolyPoints();
             points.Clear();
-            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
+            lblNumberOfPoints.Text = "Total Points: " + (points.Count / 2).ToString();
         }
 
         private void btnCalculatePoly_Click(object sender, EventArgs e)
@@ -280,7 +360,7 @@ namespace CalculusApp
             points.Add(xValuePoly);
             points.Add(yValuePoly);
             myDrawer.DrawPolyPoint(xValuePoly, yValuePoly);
-            lblNumberOfPolyPoints.Text = (points.Count / 2).ToString();
+            lblNumberOfPoints.Text = "Total Points: " + (points.Count / 2).ToString();
         }
     }
 }
