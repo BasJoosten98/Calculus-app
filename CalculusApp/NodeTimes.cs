@@ -326,5 +326,28 @@ namespace CalculusApp
             }
             return null;
         }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeTimes)
+            {
+                bool temp = false;
+                if (n.Node1.SameAs(this.node1))
+                {
+                    if (n.Node2.SameAs(this.node2))
+                    {
+                        temp = true;
+                    }
+                }
+                else if (n.Node2.SameAs(this.node1))
+                {
+                    if (n.Node1.SameAs(this.node2))
+                    {
+                        temp = true;
+                    }
+                }
+                return temp;
+            }
+            return false;
+        }
     }
 }

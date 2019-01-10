@@ -155,6 +155,23 @@ namespace CalculusApp
             nodePlus.MakeNodeClean(null, out garbage);
             return nodePlus;
         }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeMinus)
+            {
+                bool temp = true;
+                if (!n.Node1.SameAs(this.node1))
+                {
+                    temp = false;
+                }
+                if (!n.Node2.SameAs(this.node2))
+                {
+                    temp = false;
+                }
+                return temp;
+            }
+            return false;
+        }
         //old combineNodes for minus
         //private Node combineNodes(Node cleanNode1, Node cleanNode2)
         //{

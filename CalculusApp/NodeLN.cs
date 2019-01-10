@@ -81,7 +81,24 @@ namespace CalculusApp
             Node cleanNode1 = node1.MakeNodeClean(null, out receivedReplacementNode);
             this.AddNode1(cleanNode1);
             replacementNode = null;
+
+            //check if node is ln
+            if (node1 is NodeE)
+            {
+                return node1.Node1;
+            }
             return this;
+        }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeLN)
+            {
+                if (n.Node1.SameAs(this.node1))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

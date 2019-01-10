@@ -121,5 +121,16 @@ namespace CalculusApp
             }
             return this;
         }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeFactorial)
+            {
+                if (n.Node1.SameAs(this.node1))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

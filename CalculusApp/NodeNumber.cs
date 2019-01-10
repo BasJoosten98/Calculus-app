@@ -96,5 +96,16 @@ namespace CalculusApp
             replacementNode = null;
             return this;
         }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeNumber)
+            {
+                if(n.ContainsX() == this.ContainsX() && n.ContainsP() == this.ContainsP() && ((NodeNumber)n).Number == this.number)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

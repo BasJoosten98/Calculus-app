@@ -335,12 +335,29 @@ namespace CalculusApp
                         return nodeDiv;
                     }
                 }
-                if(((NodeNumber)cleanNode2).Number == 1)
+                if(((NodeNumber)cleanNode2).Number == 1 && !cleanNode2.ContainsP() && !cleanNode2.ContainsX())
                 {
                     return cleanNode1;
                 }
             }          
             return null;
+        }
+        public override bool SameAs(Node n)
+        {
+            if (n is NodeDivision)
+            {
+                bool temp = true;
+                if (!n.Node1.SameAs(this.node1))
+                {
+                    temp = false;
+                }
+                if (!n.Node2.SameAs(this.node2))
+                {
+                    temp = false;
+                }
+                return temp;
+            }
+            return false;
         }
     }
 }

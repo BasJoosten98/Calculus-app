@@ -36,6 +36,7 @@ namespace CalculusApp
         public abstract bool ContainsX();
         public abstract bool ContainsP();
         public abstract Node MakeNodeClean(Node prevNodeNumber, out Node replacementNode);
+        public abstract bool SameAs(Node n);
     }
 }
 
