@@ -130,30 +130,44 @@ namespace CalculusApp
         public override Node MakeNodeClean(Node prevNodeNumber, out Node replacementNode)
         {
             Node garbage;
-            Node nodePlus = new NodePlus();
-            nodePlus.AddNode1(node1);
-            if(node2 is NodeNumber)
+            if (node1 is NodeLN && node2 is NodeLN) //exception
             {
-                ((NodeNumber)node2).SwapPositivity();
-                nodePlus.AddNode2(node2);
-            }
-            else if(node2 is NodeMinus)
-            {
-                Node newNode2 = node2.MakeNodeClean(null, out garbage); //node2 is now nodeplus
-                ((NodePlus)newNode2).SwapPositivity();
-                nodePlus.AddNode2(newNode2);
+                Node nodeDiv = new NodeDivision();
+                Node nodeln = new NodeLN();
+                nodeln.AddNode1(nodeDiv);
+                nodeDiv.AddNode1(Node1.Node1);
+                nodeDiv.AddNode2(node2.Node1);
+                nodeln.MakeNodeClean(null, out garbage);
+                replacementNode = null;
+                return nodeln;
             }
             else
             {
-                Node nodeTimes = new NodeTimes();
-                Node nodeNumber = new NodeNumber(false, false, -1);
-                nodeTimes.AddNode1(nodeNumber);
-                nodeTimes.AddNode2(node2);
-                nodePlus.AddNode2(nodeTimes);
+                Node nodePlus = new NodePlus();
+                nodePlus.AddNode1(node1);
+                if (node2 is NodeNumber)
+                {
+                    ((NodeNumber)node2).SwapPositivity();
+                    nodePlus.AddNode2(node2);
+                }
+                else if (node2 is NodeMinus)
+                {
+                    Node newNode2 = node2.MakeNodeClean(null, out garbage); //node2 is now nodeplus
+                    ((NodePlus)newNode2).SwapPositivity();
+                    nodePlus.AddNode2(newNode2);
+                }
+                else
+                {
+                    Node nodeTimes = new NodeTimes();
+                    Node nodeNumber = new NodeNumber(false, false, -1);
+                    nodeTimes.AddNode1(nodeNumber);
+                    nodeTimes.AddNode2(node2);
+                    nodePlus.AddNode2(nodeTimes);
+                }
+                replacementNode = null;
+                nodePlus.MakeNodeClean(null, out garbage);
+                return nodePlus;
             }
-            replacementNode = null;
-            nodePlus.MakeNodeClean(null, out garbage);
-            return nodePlus;
         }
         public override bool SameAs(Node n)
         {

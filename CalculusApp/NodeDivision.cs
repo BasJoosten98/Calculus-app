@@ -339,7 +339,87 @@ namespace CalculusApp
                 {
                     return cleanNode1;
                 }
-            }          
+            }
+
+            //none of the nodes are numbers, so they need to be cleaned!
+            Node trash;
+            if (cleanNode2.SameAs(cleanNode1))
+            {
+                Node nodeNum = new NodeNumber(false, false, 1);
+                return nodeNum;
+            }
+            if((cleanNode1 is NodePower && cleanNode2 is NodePower) || (cleanNode1 is NodeE && cleanNode2 is NodeE) || (cleanNode1 is NodeTimes && cleanNode2 is NodeTimes))
+            {
+                if (!(cleanNode1 is NodeE))
+                {
+                    if (cleanNode1.Node1.SameAs(cleanNode2.Node1))
+                    {
+                        if (cleanNode1 is NodePower)
+                        {
+                            NodePower nodePow = new NodePower();
+                            NodeMinus nodeMin = new NodeMinus();
+                            nodePow.AddNode1(cleanNode1.Node1);
+                            nodePow.AddNode2(nodeMin);
+                            nodeMin.AddNode1(cleanNode1.Node2);
+                            nodeMin.AddNode2(cleanNode2.Node2);
+                            nodePow.MakeNodeClean(null, out trash);
+                            return nodePow;
+                        }
+                        if (cleanNode1 is NodeTimes)
+                        {
+                            NodeDivision nodeDiv = new NodeDivision();
+                            nodeDiv.AddNode1(cleanNode1.Node2);
+                            nodeDiv.AddNode2(cleanNode2.Node2);
+                            nodeDiv.MakeNodeClean(null, out trash);
+                            return nodeDiv;
+                        }
+                    }
+                    else if (cleanNode1.Node1.SameAs(cleanNode2.Node2))
+                    {
+                        if (cleanNode1 is NodeTimes)
+                        {
+                            NodeDivision nodeDiv = new NodeDivision();
+                            nodeDiv.AddNode1(cleanNode1.Node2);
+                            nodeDiv.AddNode2(cleanNode2.Node1);
+                            nodeDiv.MakeNodeClean(null, out trash);
+                            return nodeDiv;
+                        }
+                    }
+                    else if (cleanNode1.Node2.SameAs(cleanNode2.Node1))
+                    {
+                        if (cleanNode1 is NodeTimes)
+                        {
+                            NodeDivision nodeDiv = new NodeDivision();
+                            nodeDiv.AddNode1(cleanNode1.Node1);
+                            nodeDiv.AddNode2(cleanNode2.Node2);
+                            nodeDiv.MakeNodeClean(null, out trash);
+                            return nodeDiv;
+                        }
+                    }
+                    else if (cleanNode1.Node2.SameAs(cleanNode2.Node2))
+                    {
+                        if (cleanNode1 is NodeTimes)
+                        {
+                            NodeDivision nodeDiv = new NodeDivision();
+                            nodeDiv.AddNode1(cleanNode1.Node1);
+                            nodeDiv.AddNode2(cleanNode2.Node1);
+                            nodeDiv.MakeNodeClean(null, out trash);
+                            return nodeDiv;
+                        }
+                    }
+                }
+                else
+                {
+                    NodeE nodeE = new NodeE();
+                    NodeMinus nodeMin = new NodeMinus();
+                    nodeE.AddNode1(nodeMin);
+                    nodeMin.AddNode1(cleanNode1.Node1);
+                    nodeMin.AddNode2(cleanNode2.Node1);
+                    nodeE.MakeNodeClean(null, out trash);
+                    return nodeE;
+                }
+            }
+            
             return null;
         }
         public override bool SameAs(Node n)

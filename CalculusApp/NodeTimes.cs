@@ -324,7 +324,46 @@ namespace CalculusApp
                     }
                 }
             }
-            return null;
+            //none of the nodes are numbers, so they need to be cleaned!
+            Node trash;
+
+            if (cleanNode2.SameAs(cleanNode1))
+            {
+                Node nodePow = new NodePower();
+                nodePow.AddNode1(cleanNode1);
+                nodePow.AddNode2(new NodeNumber(false, false, 2));
+                nodePow.MakeNodeClean(null, out trash);
+                return nodePow;
+            }
+            if ((cleanNode1 is NodePower && cleanNode2 is NodePower) || (cleanNode1 is NodeE && cleanNode2 is NodeE) || (cleanNode1 is NodeLN && cleanNode2 is NodeLN))
+            {
+                if (cleanNode1.Node1.SameAs(cleanNode2.Node1))
+                {
+                    if(cleanNode1 is NodePower)
+                    {
+                        Node nodePow = new NodePower();
+                        Node nodePlus = new NodePlus();
+                        nodePow.AddNode1(cleanNode1.Node1);
+                        nodePow.AddNode2(nodePlus);
+                        nodePlus.AddNode1(cleanNode1.Node2);
+                        nodePlus.AddNode2(cleanNode2.Node2);
+                        nodePow.MakeNodeClean(null, out trash);
+                        return nodePow;
+                    }
+                }
+                if (cleanNode1 is NodeE)
+                {
+                    Node nodeE = new NodeE();
+                    Node nodePlus = new NodePlus();
+                    nodeE.AddNode1(nodePlus);
+                    nodePlus.AddNode1(cleanNode1.Node1);
+                    nodePlus.AddNode2(cleanNode2.Node1);
+                    nodeE.MakeNodeClean(null, out trash);
+                    return nodeE;
+                }
+            }
+
+                return null;
         }
         public override bool SameAs(Node n)
         {

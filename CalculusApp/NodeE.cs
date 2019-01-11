@@ -90,6 +90,13 @@ namespace CalculusApp
             {
                 return node1.Node1;
             }
+            if(node1 is NodeNumber)
+            {
+                if(!node1.ContainsP() && !node1.ContainsX() && ((NodeNumber)node1).Number == 0)
+                {
+                    return new NodeNumber(false, false, 1);
+                }
+            }
             return this;
         }
         public override bool SameAs(Node n)

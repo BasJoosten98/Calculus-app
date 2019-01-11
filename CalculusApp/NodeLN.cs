@@ -9,7 +9,6 @@ namespace CalculusApp
     class NodeLN : Node
     {
         private Node node1;
-        private double getValueXPart = Math.Log10(Math.E);
         public override Node Node1 { get { return node1; } }
         public NodeLN()
         {
@@ -30,7 +29,8 @@ namespace CalculusApp
         }
         public override double GetValueForX(double X)
         {
-            if (X > 0) { return Math.Log10(X) / getValueXPart; }
+            double input = node1.GetValueForX(X);
+            if (input > 0) { return Math.Log(input); }
             else { throw new Exception("ln: input was not greater than 0"); }
         }
         public override string GetHumanReadableString()
@@ -87,6 +87,13 @@ namespace CalculusApp
             {
                 return node1.Node1;
             }
+            if (node1 is NodeNumber)
+            {
+                if (!node1.ContainsP() && !node1.ContainsX() && ((NodeNumber)node1).Number == 1)
+                {
+                    return new NodeNumber(false, false, 0);
+                }
+            }
             return this;
         }
         public override bool SameAs(Node n)
@@ -98,6 +105,7 @@ namespace CalculusApp
                     return true;
                 }
             }
+            
             return false;
         }
     }

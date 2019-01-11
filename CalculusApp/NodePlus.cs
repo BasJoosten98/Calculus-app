@@ -294,6 +294,21 @@ namespace CalculusApp
                     }
                 }
             }
+
+            //none of the nodes are numbers, so they need to be cleaned!
+            Node trash;
+
+            if(cleanNode1 is NodeLN && cleanNode2 is NodeLN)
+            {
+                Node nodeln = new NodeLN();
+                Node nodeTim = new NodeTimes();
+                nodeTim.AddNode1(cleanNode1.Node1);
+                nodeTim.AddNode2(cleanNode2.Node1);
+                nodeln.AddNode1(nodeTim);
+                nodeln.MakeNodeClean(null, out trash);
+                return nodeln;
+            }
+
             return null;
         }
         public void SwapPositivity()

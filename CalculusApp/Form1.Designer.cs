@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btnParseSum = new System.Windows.Forms.Button();
             this.tbXValue = new System.Windows.Forms.TextBox();
@@ -45,6 +45,10 @@
             this.btnDerivativeByNewton = new System.Windows.Forms.Button();
             this.lbFunctions = new System.Windows.Forms.ListBox();
             this.gbSetAxis = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbYAxisToValue = new System.Windows.Forms.TextBox();
+            this.tbXAxisToValue = new System.Windows.Forms.TextBox();
             this.gbDerivative = new System.Windows.Forms.GroupBox();
             this.gbRienmannIntegral = new System.Windows.Forms.GroupBox();
             this.cbRienmannAbsolute = new System.Windows.Forms.CheckBox();
@@ -67,17 +71,13 @@
             this.btnResetPointsPoly = new System.Windows.Forms.Button();
             this.btnAddPointPoly = new System.Windows.Forms.Button();
             this.tbYValuePoly = new System.Windows.Forms.TextBox();
-            this.btnCalculatePoly = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tbXValuePoly = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnCalculatePoly = new System.Windows.Forms.Button();
             this.ChartMouseX = new System.Windows.Forms.Label();
             this.ChartMouseY = new System.Windows.Forms.Label();
             this.gbPolynomial = new System.Windows.Forms.GroupBox();
-            this.tbYAxisToValue = new System.Windows.Forms.TextBox();
-            this.tbXAxisToValue = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ChartFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNodeStructure)).BeginInit();
             this.gbSetAxis.SuspendLayout();
@@ -118,14 +118,14 @@
             this.btnCalculateForX.Name = "btnCalculateForX";
             this.btnCalculateForX.Size = new System.Drawing.Size(94, 23);
             this.btnCalculateForX.TabIndex = 3;
-            this.btnCalculateForX.Text = "Calculate for x";
+            this.btnCalculateForX.Text = "Calculate for X";
             this.btnCalculateForX.UseVisualStyleBackColor = true;
             this.btnCalculateForX.Click += new System.EventHandler(this.btnCalculateForX_Click);
             // 
             // lblCalculateForXAnswer
             // 
             this.lblCalculateForXAnswer.AutoSize = true;
-            this.lblCalculateForXAnswer.Location = new System.Drawing.Point(249, 40);
+            this.lblCalculateForXAnswer.Location = new System.Drawing.Point(233, 40);
             this.lblCalculateForXAnswer.Name = "lblCalculateForXAnswer";
             this.lblCalculateForXAnswer.Size = new System.Drawing.Size(42, 13);
             this.lblCalculateForXAnswer.TabIndex = 4;
@@ -133,8 +133,8 @@
             // 
             // ChartFunction
             // 
-            chartArea1.Name = "ChartArea1";
-            this.ChartFunction.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.ChartFunction.ChartAreas.Add(chartArea3);
             this.ChartFunction.Location = new System.Drawing.Point(13, 84);
             this.ChartFunction.Name = "ChartFunction";
             this.ChartFunction.Size = new System.Drawing.Size(455, 310);
@@ -149,6 +149,7 @@
             this.tbXAxisFromValue.Name = "tbXAxisFromValue";
             this.tbXAxisFromValue.Size = new System.Drawing.Size(41, 20);
             this.tbXAxisFromValue.TabIndex = 7;
+            this.tbXAxisFromValue.Text = "-10";
             // 
             // btnSetAxis
             // 
@@ -175,6 +176,7 @@
             this.tbYAxisFromValue.Name = "tbYAxisFromValue";
             this.tbYAxisFromValue.Size = new System.Drawing.Size(41, 20);
             this.tbYAxisFromValue.TabIndex = 9;
+            this.tbYAxisFromValue.Text = "-10";
             // 
             // label1
             // 
@@ -200,7 +202,7 @@
             this.btnDerivativeByFunction.Name = "btnDerivativeByFunction";
             this.btnDerivativeByFunction.Size = new System.Drawing.Size(126, 23);
             this.btnDerivativeByFunction.TabIndex = 11;
-            this.btnDerivativeByFunction.Text = "Derivative by function";
+            this.btnDerivativeByFunction.Text = "Derivative by Function";
             this.btnDerivativeByFunction.UseVisualStyleBackColor = true;
             this.btnDerivativeByFunction.Click += new System.EventHandler(this.btnDerivativeByFunction_Click);
             // 
@@ -210,7 +212,7 @@
             this.btnDerivativeByNewton.Name = "btnDerivativeByNewton";
             this.btnDerivativeByNewton.Size = new System.Drawing.Size(126, 23);
             this.btnDerivativeByNewton.TabIndex = 12;
-            this.btnDerivativeByNewton.Text = "Derivative by newton";
+            this.btnDerivativeByNewton.Text = "Derivative by Newton";
             this.btnDerivativeByNewton.UseVisualStyleBackColor = true;
             this.btnDerivativeByNewton.Click += new System.EventHandler(this.btnDerivativeByNewton_Click);
             // 
@@ -241,6 +243,40 @@
             this.gbSetAxis.TabIndex = 14;
             this.gbSetAxis.TabStop = false;
             this.gbSetAxis.Text = "Axis of graph";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(80, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "to";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(80, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "to";
+            // 
+            // tbYAxisToValue
+            // 
+            this.tbYAxisToValue.Location = new System.Drawing.Point(102, 42);
+            this.tbYAxisToValue.Name = "tbYAxisToValue";
+            this.tbYAxisToValue.Size = new System.Drawing.Size(41, 20);
+            this.tbYAxisToValue.TabIndex = 13;
+            this.tbYAxisToValue.Text = "10";
+            // 
+            // tbXAxisToValue
+            // 
+            this.tbXAxisToValue.Location = new System.Drawing.Point(102, 19);
+            this.tbXAxisToValue.Name = "tbXAxisToValue";
+            this.tbXAxisToValue.Size = new System.Drawing.Size(41, 20);
+            this.tbXAxisToValue.TabIndex = 12;
+            this.tbXAxisToValue.Text = "10";
             // 
             // gbDerivative
             // 
@@ -376,7 +412,7 @@
             this.btnDrawMaclaurinSeriesFast.Name = "btnDrawMaclaurinSeriesFast";
             this.btnDrawMaclaurinSeriesFast.Size = new System.Drawing.Size(117, 23);
             this.btnDrawMaclaurinSeriesFast.TabIndex = 3;
-            this.btnDrawMaclaurinSeriesFast.Text = "Draw series Fast";
+            this.btnDrawMaclaurinSeriesFast.Text = "Draw Series (fast)";
             this.btnDrawMaclaurinSeriesFast.UseVisualStyleBackColor = true;
             this.btnDrawMaclaurinSeriesFast.Click += new System.EventHandler(this.btnDrawMaclaurinSeriesFast_Click);
             // 
@@ -386,7 +422,7 @@
             this.btnCreateMaclaurinSerieAccurate.Name = "btnCreateMaclaurinSerieAccurate";
             this.btnCreateMaclaurinSerieAccurate.Size = new System.Drawing.Size(117, 23);
             this.btnCreateMaclaurinSerieAccurate.TabIndex = 2;
-            this.btnCreateMaclaurinSerieAccurate.Text = "Create serie AC";
+            this.btnCreateMaclaurinSerieAccurate.Text = "Create Serie";
             this.btnCreateMaclaurinSerieAccurate.UseVisualStyleBackColor = true;
             this.btnCreateMaclaurinSerieAccurate.Click += new System.EventHandler(this.btnCreateMaclaurinSerieAccurate_Click);
             // 
@@ -427,9 +463,9 @@
             this.lblNumberOfPoints.AutoSize = true;
             this.lblNumberOfPoints.Location = new System.Drawing.Point(9, 20);
             this.lblNumberOfPoints.Name = "lblNumberOfPoints";
-            this.lblNumberOfPoints.Size = new System.Drawing.Size(66, 13);
+            this.lblNumberOfPoints.Size = new System.Drawing.Size(75, 13);
             this.lblNumberOfPoints.TabIndex = 18;
-            this.lblNumberOfPoints.Text = "Total Points:";
+            this.lblNumberOfPoints.Text = "Total Points: 0";
             // 
             // btnResetPointsPoly
             // 
@@ -437,7 +473,7 @@
             this.btnResetPointsPoly.Name = "btnResetPointsPoly";
             this.btnResetPointsPoly.Size = new System.Drawing.Size(78, 23);
             this.btnResetPointsPoly.TabIndex = 17;
-            this.btnResetPointsPoly.Text = "Reset points";
+            this.btnResetPointsPoly.Text = "Reset Points";
             this.btnResetPointsPoly.UseVisualStyleBackColor = true;
             this.btnResetPointsPoly.Click += new System.EventHandler(this.btnResetPointsPoly_Click);
             // 
@@ -447,7 +483,7 @@
             this.btnAddPointPoly.Name = "btnAddPointPoly";
             this.btnAddPointPoly.Size = new System.Drawing.Size(64, 23);
             this.btnAddPointPoly.TabIndex = 16;
-            this.btnAddPointPoly.Text = "Add point";
+            this.btnAddPointPoly.Text = "Add Point";
             this.btnAddPointPoly.UseVisualStyleBackColor = true;
             this.btnAddPointPoly.Click += new System.EventHandler(this.btnAddPointPoly_Click);
             // 
@@ -457,16 +493,6 @@
             this.tbYValuePoly.Name = "tbYValuePoly";
             this.tbYValuePoly.Size = new System.Drawing.Size(41, 20);
             this.tbYValuePoly.TabIndex = 14;
-            // 
-            // btnCalculatePoly
-            // 
-            this.btnCalculatePoly.Location = new System.Drawing.Point(10, 19);
-            this.btnCalculatePoly.Name = "btnCalculatePoly";
-            this.btnCalculatePoly.Size = new System.Drawing.Size(148, 51);
-            this.btnCalculatePoly.TabIndex = 1;
-            this.btnCalculatePoly.Text = "Calculate Polynomial";
-            this.btnCalculatePoly.UseVisualStyleBackColor = true;
-            this.btnCalculatePoly.Click += new System.EventHandler(this.btnCalculatePoly_Click);
             // 
             // label3
             // 
@@ -492,6 +518,16 @@
             this.label4.Size = new System.Drawing.Size(14, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "X";
+            // 
+            // btnCalculatePoly
+            // 
+            this.btnCalculatePoly.Location = new System.Drawing.Point(10, 19);
+            this.btnCalculatePoly.Name = "btnCalculatePoly";
+            this.btnCalculatePoly.Size = new System.Drawing.Size(148, 51);
+            this.btnCalculatePoly.TabIndex = 1;
+            this.btnCalculatePoly.Text = "Calculate Polynomial";
+            this.btnCalculatePoly.UseVisualStyleBackColor = true;
+            this.btnCalculatePoly.Click += new System.EventHandler(this.btnCalculatePoly_Click);
             // 
             // ChartMouseX
             // 
@@ -519,39 +555,7 @@
             this.gbPolynomial.Size = new System.Drawing.Size(164, 82);
             this.gbPolynomial.TabIndex = 21;
             this.gbPolynomial.TabStop = false;
-            this.gbPolynomial.Text = "n-polynomial";
-            // 
-            // tbYAxisToValue
-            // 
-            this.tbYAxisToValue.Location = new System.Drawing.Point(102, 42);
-            this.tbYAxisToValue.Name = "tbYAxisToValue";
-            this.tbYAxisToValue.Size = new System.Drawing.Size(41, 20);
-            this.tbYAxisToValue.TabIndex = 13;
-            // 
-            // tbXAxisToValue
-            // 
-            this.tbXAxisToValue.Location = new System.Drawing.Point(102, 19);
-            this.tbXAxisToValue.Name = "tbXAxisToValue";
-            this.tbXAxisToValue.Size = new System.Drawing.Size(41, 20);
-            this.tbXAxisToValue.TabIndex = 12;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(80, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(16, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "to";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(80, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "to";
+            this.gbPolynomial.Text = "N-Polynomial";
             // 
             // Form1
             // 

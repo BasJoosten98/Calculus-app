@@ -167,6 +167,28 @@ namespace CalculusApp
                         return cleanNode1;
                     }
                 }
+
+                //none of the nodes are numbers, so they need to be cleaned!
+                Node trash;
+
+                if(cleanNode1 is NodeLN)
+                {
+                    Node nodePow = new NodePower();
+                    nodePow.AddNode1(cleanNode1.Node1);
+                    nodePow.AddNode2(cleanNode2);
+                    cleanNode1.AddNode1(nodePow);
+                    cleanNode1.MakeNodeClean(null, out trash);
+                    return cleanNode1;
+                }
+                if(cleanNode1 is NodeE)
+                {
+                    Node nodePlus = new NodePlus();
+                    nodePlus.AddNode1(cleanNode1.Node1);
+                    nodePlus.AddNode2(cleanNode2);
+                    cleanNode1.AddNode1(nodePlus);
+                    cleanNode1.MakeNodeClean(null, out trash);
+                    return cleanNode1;
+                }
             }
             else //both are upper nodes, try to multiply time if possible (this is a copy of nodeTimes.combineNodes() method)
             {
